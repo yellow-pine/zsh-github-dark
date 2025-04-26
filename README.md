@@ -1,8 +1,8 @@
 # zsh-github-dark
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![💛 Yellow Pine](https://img.shields.io/badge/-💛%20Yellow%20Pine-ffcc00)](https://github.com/yellow-pine)
-[![Shell](https://img.shields.io/badge/Shell-Zsh-89e051)](https://www.zsh.org/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![💛 Yellow Pine](https://img.shields.io/badge/%F0%9F%92%9B%20Yellow%20Pine-gray.svg)](https://github.com/yellow-pine)
+[![Shell](https://img.shields.io/badge/Shell-zsh-green.svg)](https://www.zsh.org/)
 
 Minimalistic macOS zsh and Terminal configuration optimized for GitHub Dark themes.  
 Designed for clarity, speed, and a visually cohesive development environment.
