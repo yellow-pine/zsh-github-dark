@@ -7,6 +7,12 @@
 Minimalistic macOS zsh and Terminal configuration optimized for GitHub Dark themes.  
 Designed for clarity, speed, and a visually cohesive development environment.
 
+## 🎨 Terminal Preview
+
+Here's a preview of the final setup:
+
+![Terminal Preview](assets/terminal-preview.png)
+
 ## 🚀 Quick Start
 
 ```bash
@@ -73,10 +79,6 @@ brew install pyenv nvm poetry
     exec zsh
     ```
 
-## 🔵 Troubleshooting
-
-If something doesn't work as expected, check [TROUBLESHOOTING.md](TROUBLESHOOTING.md) for help.
-
 ## ✨ Features
 
 - GitHub Dark-optimized zsh prompt
@@ -84,6 +86,15 @@ If something doesn't work as expected, check [TROUBLESHOOTING.md](TROUBLESHOOTIN
 - Human-readable `lsd` output with matching color theme
 - Clean handling of personal vs. organizational Git identities
 - No plugins, no bloated frameworks — pure native zsh
+
+## 🎨 Terminal Theme Details
+
+- Based on [GitHub Dark – terminalcolors.com](https://terminalcolors.com/themes/github/dark/)
+- Minor tweaks applied:
+  - Font size set to 12
+  - Background opacity set to 85%
+  - Cursor color adjusted to match "Bold Text" instead of default orange
+- File provided: `src/github-dark.terminal`
 
 ## 🌐 Project Structure
 
@@ -96,6 +107,10 @@ zsh-github-dark/
 ├── LICENSE
 ├── .gitignore
 ```
+
+## 🔵 Troubleshooting
+
+If something doesn't work as expected, check [TROUBLESHOOTING.md](TROUBLESHOOTING.md) for help.
 
 ## 📫 Contact
 
