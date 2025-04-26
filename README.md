@@ -15,14 +15,21 @@ Here's a preview of the final setup:
 
 ## 🚀 Quick Start
 
+Install required system packages:
+
 ```bash
-# Install required packages first
 brew install coreutils lsd zsh
+```
 
-# (Optional but recommended for developers)
+(Optional, recommended for developers: Python, Node, and Poetry tools)
+
+```bash
 brew install pyenv nvm poetry
+```
 
-# Clone and set up
+Clone and set up:
+
+```bash
 git clone https://github.com/yellow-pine/zsh-github-dark.git
 cd zsh-github-dark
 cp src/.zshrc ~/.zshrc
@@ -31,55 +38,7 @@ exec zsh
 
 ✅ You are now fully set up!
 
-## 🛠 Requirements Before Installation
-
-Make sure the following tools are installed (via Homebrew preferred):
-
-```bash
-brew install coreutils lsd zsh
-```
-
-If you work with Node.js, Python, or GitHub daily, it's also recommended to install:
-
-```bash
-brew install pyenv nvm poetry
-```
-
-## 📦 Full Installation Steps
-
-1. **Install required packages (if not already installed):**
-
-    ```bash
-    brew install coreutils lsd zsh
-    brew install pyenv nvm poetry  # optional but recommended
-    ```
-
-2. **Clone the repository:**
-
-    ```bash
-    git clone <https://github.com/yellow-pine/zsh-github-dark.git>
-    cd zsh-github-dark
-    ```
-
-3. **Copy the `.zshrc` into your home directory:**
-
-    ```bash
-    cp src/.zshrc ~/.zshrc
-    ```
-
-4. **Import the Terminal profile:**
-
-    - Open Terminal ➔ Settings ➔ Profiles ➔ Import
-    - Select the file `src/github-dark.terminal`
-    - Set it as the Default profile if desired
-
-5. **Reload your shell:**
-
-    ```bash
-    exec zsh
-    ```
-
-## ✨ Features
+## 🛠 Features
 
 - GitHub Dark-optimized zsh prompt
 - Git branch awareness, last command timing, and error status
@@ -89,28 +48,16 @@ brew install pyenv nvm poetry
 
 ## 🎨 Terminal Theme Details
 
-- Based on [GitHub Dark – terminalcolors.com](https://terminalcolors.com/themes/github/dark/)
-- Minor tweaks applied:
+- Based on [GitHub Dark](https://terminalcolors.com/themes/github/dark/)
+- Minor Yellow Pine customizations:
   - Font size set to 12
   - Background opacity set to 85%
-  - Cursor color adjusted to match "Bold Text" instead of default orange
-- File provided: `src/github-dark.terminal`
+  - Cursor color changed to match Bold Text instead of orange
+- Provided file: `src/github-dark.terminal`
 
-## 🌐 Project Structure
+## 🛠 Troubleshooting
 
-```plaintext
-zsh-github-dark/
-├── src/
-│   ├── .zshrc                  # The main zsh configuration
-│   └── github-dark.terminal    # The customized Terminal profile
-├── README.md
-├── LICENSE
-├── .gitignore
-```
-
-## 🔵 Troubleshooting
-
-If something doesn't work as expected, check [TROUBLESHOOTING.md](TROUBLESHOOTING.md) for help.
+If anything doesn't work as expected, please check [TROUBLESHOOTING.md](TROUBLESHOOTING.md) first.
 
 ## 📫 Contact
 
@@ -119,5 +66,5 @@ For feedback, ideas, or contributions:
 
 ## ⚡ License
 
-This project is licensed under the [MIT License](LICENSE) — free for personal and commercial use.  
+This project is licensed under the [MIT License](LICENSE).  
 Authored and maintained by **Cansin Yildiz**.
