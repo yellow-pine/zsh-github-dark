@@ -1,91 +1,107 @@
 # zsh-github-dark
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Shell](https://img.shields.io/badge/Shell-Zsh-89e051)](https://www.zsh.org/)
+[![Crafted with 💛 by Yellow Pine](https://img.shields.io/badge/Crafted%20with-%F0%9F%92%9B%20by%20Yellow%20Pine-ffcc00)](https://github.com/yellow-pine)
 
-Minimal GitHub Dark-optimized zsh configuration for developers, tuned for macOS + Homebrew.
+Minimalistic macOS zsh and Terminal configuration optimized for GitHub Dark themes.  
+Designed for clarity, speed, and a visually cohesive development environment.
 
----
+## 🚀 Quick Start
 
-## 📂 Files Included
+```bash
+# Install required packages first
 
-- `.zshrc` – optimized for:
-  - macOS ARM (M1/M2/M3)
-  - Homebrew setups (`coreutils`, `pyenv`, `nvm`, `poetry`, `lsd`)
-  - GitHub Dark Terminal Profile color-matching
-  - Dynamic prompt (git branch, dirty marker, timing, exit code coloring)
-  - Lightweight, fast loading (no oh-my-zsh or plugin frameworks)
-- `github-dark.terminal` – matching Terminal.app profile (dark background, soft colors)
+brew install coreutils lsd eza zsh
 
----
+# (Optional but recommended for developers)
 
-## 🚀 Quick Setup
+brew install pyenv nvm poetry
 
-1. Clone this repository:
+# Clone and set up
 
-   ```bash
-   git clone <https://github.com/YOUR_USERNAME/zsh-github-dark.git>
-   cd zsh-github-dark
-   ```
+git clone <https://github.com/yellow-pine/zsh-github-dark.git>
+cd zsh-github-dark
+cp src/.zshrc ~/.zshrc
+exec zsh
+```
 
-2. Install the recommended Homebrew packages:
+✅ You are now fully set up!
 
-   ```bash
-   brew install coreutils lsd bc pyenv nvm poetry
-   ```
+## 🛠 Requirements Before Installation
 
-3. Copy the `.zshrc` to your home directory:
+Make sure the following tools are installed (via Homebrew preferred):
 
-   ```bash
-   cp .zshrc ~/.zshrc
-   ```
+```bash
+brew install coreutils lsd eza zsh
+```
 
-4. Import `github-dark.terminal` into Terminal.app:
-   - Open Terminal ➔ Settings ➔ Profiles ➔ Import ➔ select `github-dark.terminal`
-   - Set it as the default profile.
+If you work with Node.js, Python, or GitHub daily, it's also recommended to install:
 
-5. Set `zsh` as your default shell:
+```bash
+brew install pyenv nvm poetry
+```
 
-   ```bash
-   chsh -s /bin/zsh
-   ```
+## 📦 Full Installation Steps
 
-6. Set `zsh` as root's shell to fix `sudo su -`:
+1. **Install required packages (if not already installed):**
 
-   ```bash
-   sudo chsh -s /bin/zsh root
-   ```
+    ```bash
+    brew install coreutils lsd eza zsh
+    brew install pyenv nvm poetry  # optional but recommended
+    ```
 
-7. Create the NVM working directory if missing:
+1. **Clone the repository:**
 
-   ```bash
-   mkdir -p ~/.nvm
-   ```
+    ```bash
+    git clone <https://github.com/yellow-pine/zsh-github-dark.git>
+    cd zsh-github-dark
+    ```
 
-   ---
+1. **Copy the `.zshrc` into your home directory:**
 
-## 📋 Notes
+    ```bash
+    cp src/.zshrc ~/.zshrc
+    ```
 
-- This setup is tuned for GitHub Dark themes.
-- Lightweight, no plugin managers like oh-my-zsh.
-- Safe for both interactive and root shells.
-- Easy to extend if you want to add your own aliases, custom functions later.
+1. **Import the Terminal profile:**
 
----
+    - Open Terminal ➔ Settings ➔ Profiles ➔ Import
+    - Select the file `src/github-dark.terminal`
+    - Set it as the Default profile if desired
 
-## 🎨 Terminal Profile Source and Customizations
+1. **Reload your shell:**
 
-The included `github-dark.terminal` is based on:
+    ```bash
+    exec zsh
+    ```
 
-- Original theme: [GitHub Dark – terminalcolors.com](https://terminalcolors.com/themes/github/dark/)
+## ✨ Features
 
-Custom modifications made:
+- GitHub Dark-optimized zsh prompt
+- Git branch awareness, last command timing, and error status
+- Human-readable `lsd` output with matching color theme
+- Clean handling of personal vs. organizational Git identities
+- No plugins, no bloated frameworks — pure native zsh
 
-- Font size set to **12 pt** for better readability.
-- Background opacity adjusted to **85%** for a slightly translucent look.
-- Cursor color changed to match **bold text color** (originally orange).
+## 🌐 Project Structure
 
----
+```plaintext
+zsh-github-dark/
+├── src/
+│   ├── .zshrc                  # The main zsh configuration
+│   └── github-dark.terminal    # The customized Terminal profile
+├── README.md
+├── LICENSE
+├── .gitignore
+```
 
-## 📜 License
+## 📫 Contact
 
-MIT License – see [LICENSE](LICENSE) for full details.
+For feedback, ideas, or contributions:  
+**<hello@yellowpine.com>**
+
+## ⚡ License
+
+This project is licensed under the [MIT License](LICENSE) — free for personal and commercial use.  
+Authored and maintained by **Cansin Yildiz**.
