@@ -15,26 +15,32 @@ Here's a preview of the final setup:
 
 ## 🚀 Quick Start
 
-Install required system packages:
+### 1. Install Required Packages
 
 ```bash
 brew install coreutils lsd zsh
 ```
 
-(Optional, recommended for developers: Python, Node, and Poetry tools)
+### 2. (Optional) Install Developer Tools
+
+Recommended if you work with Python, Node, or Poetry:
 
 ```bash
 brew install pyenv nvm poetry
 ```
 
-Clone and set up:
+### 3. Clone the Repository and Set Up
 
 ```bash
-git clone https://github.com/yellow-pine/zsh-github-dark.git
+git clone <https://github.com/yellow-pine/zsh-github-dark.git>
 cd zsh-github-dark
 cp src/.zshrc ~/.zshrc
 exec zsh
 ```
+
+### 4. Import the Terminal Profile
+
+Terminal profile: Double-click `github-dark.terminal` to import it, then set it as your default under **Terminal Settings → Profiles → Default**.
 
 ✅ You are now fully set up!
 
