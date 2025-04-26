@@ -1,8 +1,8 @@
 # zsh-github-dark
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![💛 Yellow Pine](https://img.shields.io/badge/-💛%20Yellow%20Pine-ffcc00)](https://github.com/yellow-pine)
 [![Shell](https://img.shields.io/badge/Shell-Zsh-89e051)](https://www.zsh.org/)
-[![Crafted with 💛 by Yellow Pine](https://img.shields.io/badge/Crafted%20with-%F0%9F%92%9B%20by%20Yellow%20Pine-ffcc00)](https://github.com/yellow-pine)
 
 Minimalistic macOS zsh and Terminal configuration optimized for GitHub Dark themes.  
 Designed for clarity, speed, and a visually cohesive development environment.
@@ -11,16 +11,13 @@ Designed for clarity, speed, and a visually cohesive development environment.
 
 ```bash
 # Install required packages first
-
-brew install coreutils lsd eza zsh
+brew install coreutils lsd zsh
 
 # (Optional but recommended for developers)
-
 brew install pyenv nvm poetry
 
 # Clone and set up
-
-git clone <https://github.com/yellow-pine/zsh-github-dark.git>
+git clone https://github.com/yellow-pine/zsh-github-dark.git
 cd zsh-github-dark
 cp src/.zshrc ~/.zshrc
 exec zsh
@@ -33,7 +30,7 @@ exec zsh
 Make sure the following tools are installed (via Homebrew preferred):
 
 ```bash
-brew install coreutils lsd eza zsh
+brew install coreutils lsd zsh
 ```
 
 If you work with Node.js, Python, or GitHub daily, it's also recommended to install:
@@ -47,34 +44,38 @@ brew install pyenv nvm poetry
 1. **Install required packages (if not already installed):**
 
     ```bash
-    brew install coreutils lsd eza zsh
+    brew install coreutils lsd zsh
     brew install pyenv nvm poetry  # optional but recommended
     ```
 
-1. **Clone the repository:**
+2. **Clone the repository:**
 
     ```bash
     git clone <https://github.com/yellow-pine/zsh-github-dark.git>
     cd zsh-github-dark
     ```
 
-1. **Copy the `.zshrc` into your home directory:**
+3. **Copy the `.zshrc` into your home directory:**
 
     ```bash
     cp src/.zshrc ~/.zshrc
     ```
 
-1. **Import the Terminal profile:**
+4. **Import the Terminal profile:**
 
     - Open Terminal ➔ Settings ➔ Profiles ➔ Import
     - Select the file `src/github-dark.terminal`
     - Set it as the Default profile if desired
 
-1. **Reload your shell:**
+5. **Reload your shell:**
 
     ```bash
     exec zsh
     ```
+
+## 🔵 Troubleshooting
+
+If something doesn't work as expected, check [TROUBLESHOOTING.md](TROUBLESHOOTING.md) for help.
 
 ## ✨ Features
 
