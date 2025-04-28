@@ -1,5 +1,3 @@
-# 📝 Issue Template
-
 ## Summary
 
 Briefly describe the problem or idea.
@@ -9,10 +7,8 @@ Briefly describe the problem or idea.
 - Steps to reproduce (if applicable)
 - Environment info (OS, Terminal app, any special settings)
 
-## Suggested Fix or Enhancement
+## Suggested Fix
 
-(Optional) If you have an idea for how to fix it, suggest it here.
+(Optional) Suggest how to fix or improve it.
 
----
-
-Thanks for contributing to zsh-github-dark! 🚀
+<!-- Thank you for contributing to zsh-github-dark! 🚀 -->
