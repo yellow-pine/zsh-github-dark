@@ -6,9 +6,6 @@
 *.swo
 *.swn
 
-# VSCode project settings (optional)
-.vscode/
-
 # Backup files
 *~
 *.bak
