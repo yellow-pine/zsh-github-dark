@@ -49,7 +49,6 @@ Terminal profile: Double-click `src/github-dark.terminal` to import it, then set
 - GitHub Dark-optimized zsh prompt
 - Git branch awareness, last command timing, and error status
 - Human-readable `lsd` output with matching color theme
-- Clean handling of personal vs. organizational Git identities
 - No plugins, no bloated frameworks — pure native zsh
 
 ## 🎨 Terminal Theme Details
