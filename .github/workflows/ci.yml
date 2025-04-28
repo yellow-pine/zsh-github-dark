@@ -8,8 +8,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  zsh-lint:
-    name: Validate .zshrc Syntax
+  validate:
+    name: Project Validation
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -19,11 +19,11 @@ jobs:
           sudo apt update
           sudo apt install -y zsh
 
-      - name: Check .zshrc Syntax
+      - name: Lint .zshrc Syntax
         run: |
           zsh -n src/.zshrc
 
-      - name: Check files
+      - name: Check Required Files
         run: |
           test -f src/github-dark.terminal
           test -f README.md
