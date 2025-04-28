@@ -61,6 +61,19 @@ standards without manual intervention.
 
 ---
 
+## 🧩 Recommended VSCode Extensions
+
+To ensure a smooth development experience, we recommend installing the suggested
+extensions when prompted by VSCode or Cursor:
+
+- **Shell Format** (`foxundermoon.shell-format`) — Formats `.zshrc` cleanly using `shfmt`
+- **EditorConfig** (`editorconfig.editorconfig`) — Ensures consistent formatting rules across different editors
+- **Markdownlint** (`davidanson.vscode-markdownlint`) — Helps maintain clean and consistent Markdown style
+
+These extensions are optional but highly recommended.
+
+---
+
 ## 🛡 License
 
 By contributing, you agree that your code will be licensed under the [MIT License](LICENSE).
