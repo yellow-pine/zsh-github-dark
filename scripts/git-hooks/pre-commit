@@ -1,0 +1,9 @@
+#!/bin/bash
+# pre-commit hook to auto-format src/.zshrc with shfmt
+
+echo "🔧 Running shfmt on src/.zshrc..."
+shfmt -w -i 2 src/.zshrc
+
+git add src/.zshrc
+
+echo "✅ .zshrc formatted with shfmt"
