@@ -1,7 +1,7 @@
 # 🛠 Contributing to zsh-github-dark
 
-Thanks for considering contributing!
-We keep things simple and clean — here’s how you can help:
+Thanks for considering contributing! We keep things simple and clean —
+here’s how you can help:
 
 ## ✨ How to Contribute
 
@@ -41,34 +41,37 @@ brew install shfmt
 
 We use `shfmt` to automatically format `src/.zshrc` for consistency.
 
-> **Note:** Syntax checking (`zsh -n`) is handled automatically by
-> GitHub Actions CI.
+> **Note:** Syntax checking (`zsh -n`) and formatting validation (`shfmt -d`)
+> are handled automatically by GitHub Actions CI.
 
 ---
 
 ### 🔹 Optional: Pre-Commit Hook for Auto-Formatting
 
-To automatically format `src/.zshrc` before every commit, run the provided setup
-script:
+To automatically format `src/.zshrc` before every commit, run the provided
+setup script:
 
 ```bash
 scripts/setup.sh
 ```
 
-This will install the pre-commit hook automatically.
-It ensures that all committed changes stay consistent with our formatting
-standards without manual intervention.
+This will install the pre-commit hook automatically. It ensures that all
+committed changes stay consistent with our formatting standards without
+manual intervention.
 
 ---
 
 ## 🧩 Recommended VSCode Extensions
 
-To ensure a smooth development experience, we recommend installing the suggested
-extensions when prompted by VSCode or Cursor:
+To ensure a smooth development experience, we recommend installing the
+suggested extensions when prompted by VSCode or Cursor:
 
-- **Shell Format** (`foxundermoon.shell-format`) — Formats `.zshrc` cleanly using `shfmt`
-- **EditorConfig** (`editorconfig.editorconfig`) — Ensures consistent formatting rules across different editors
-- **Markdownlint** (`davidanson.vscode-markdownlint`) — Helps maintain clean and consistent Markdown style
+- **Shell Format** (`foxundermoon.shell-format`) — Formats `.zshrc` cleanly
+  using `shfmt`
+- **EditorConfig** (`editorconfig.editorconfig`) — Ensures consistent
+  formatting rules across different editors
+- **Markdownlint** (`davidanson.vscode-markdownlint`) — Helps maintain clean
+  and consistent Markdown style
 
 These extensions are optional but highly recommended.
 
@@ -76,9 +79,10 @@ These extensions are optional but highly recommended.
 
 ## 🛡 License
 
-By contributing, you agree that your code will be licensed under the [MIT License](LICENSE).
+By contributing, you agree that your code will be licensed under the
+[MIT License](LICENSE).
 
 ---
 
-Thank you for helping make this project better!
-Built with 💛 by [Yellow Pine](https://github.com/yellow-pine).
+Thank you for helping make this project better! Built with 💛 by
+[Yellow Pine](https://github.com/yellow-pine).
