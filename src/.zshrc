@@ -103,7 +103,7 @@ build_prompt() {
     BRANCH=" ${BRANCH_COLOR}[$BRANCH]"
   fi
 
-  PROMPT="${USER_COLOR}%n${AT_COLOR}@${HOST_COLOR}%m ${DIR_COLOR}%~${BRANCH}${TIME_DIFF}${PROMPT_COLOR}%# ${RESET}"
+  PROMPT="${USER_COLOR}%n${AT_COLOR}@${HOST_COLOR}%m ${DIR_COLOR}%~${BRANCH}${TIME_DIFF}${PROMPT_COLOR} %# ${RESET}"
 }
 
 autoload -Uz add-zsh-hook
