@@ -1,4 +1,6 @@
-# This repository does not currently use a package ecosystem requiring automated dependency updates.
-
 version: 2
-updates: []
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/" 
+    schedule:
+      interval: "monthly"
