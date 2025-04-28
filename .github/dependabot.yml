@@ -1,4 +1,4 @@
+# This repository does not currently use a package ecosystem requiring automated dependency updates.
+
 version: 2
-updates:
-  # No package ecosystems configured for this repository.
-  # This repository contains only configuration files.
+updates: []
