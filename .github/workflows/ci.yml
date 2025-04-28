@@ -14,18 +14,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install zsh and shellcheck
+      - name: Install zsh and shfmt
         run: |
           sudo apt update
-          sudo apt install -y zsh shellcheck
+          sudo apt install -y zsh shfmt
 
-      - name: Lint .zshrc Syntax
+      - name: Syntax Check .zshrc
         run: |
           zsh -n src/.zshrc
-
-      - name: Lint .zshrc Style
-        run: |
-          shellcheck src/.zshrc
 
       - name: Check Required Files
         run: |

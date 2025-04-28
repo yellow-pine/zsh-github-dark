@@ -41,8 +41,8 @@ brew install shfmt
 
 We use `shfmt` to automatically format `src/.zshrc` for consistency.
 
-> **Note:** Linting and syntax checking (`zsh -n` and `shellcheck`) are handled
-> automatically by GitHub Actions CI.
+> **Note:** Syntax checking (`zsh -n`) is handled automatically by
+> GitHub Actions CI.
 
 ---
 
