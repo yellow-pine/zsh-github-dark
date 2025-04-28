@@ -44,12 +44,12 @@ alias vdir='lsd -l --group-dirs=first --icon never'
 # ⚡ Dynamic Prompt Setup (timing, git, errors)
 local RESET="%f%k"
 local USER_COLOR_OK="%F{cyan}"
-local USER_COLOR_FAIL="%F{1}"           # soft red
+local USER_COLOR_FAIL="%F{1}" # soft red
 local AT_COLOR="%F{default}"
-local HOST_COLOR="%F{3}"                 # soft yellow
+local HOST_COLOR="%F{3}" # soft yellow
 local DIR_COLOR="%F{green}"
 local PROMPT_COLOR="%F{242}"
-local BRANCH_COLOR="%F{5}"               # soft purple
+local BRANCH_COLOR="%F{5}" # soft purple
 local TIME_COLOR="%F{blue}"
 
 typeset -g __TIMER_START=0
@@ -91,7 +91,7 @@ build_prompt() {
   if [[ -n $__TIMER_START && -n $__TIMER_END ]]; then
     if [[ $__TIMER_START != 0 && $__TIMER_END != 0 ]]; then
       local delta=$(echo "$__TIMER_END - $__TIMER_START" | bc)
-      if (( $(echo "$delta > 5" | bc) )); then
+      if (($(echo "$delta > 5" | bc))); then
         local seconds=$(printf "%.2f" "$delta")
         TIME_DIFF=" ${TIME_COLOR}(took ${seconds}s)"
       fi
