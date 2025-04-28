@@ -24,7 +24,8 @@ We keep things simple and clean — here’s how you can help:
 
 ## 🛠 Developer Setup
 
-To contribute cleanly to this project, we recommend setting up a local environment with basic tooling.
+To contribute cleanly to this project, we recommend setting up a local
+environment with basic tooling.
 
 ### 🔹 Required Developer Tools
 
@@ -40,20 +41,23 @@ brew install shfmt
 
 We use `shfmt` to automatically format `src/.zshrc` for consistency.
 
-> **Note:** Linting and syntax checking (`zsh -n` and `shellcheck`) are handled automatically by GitHub Actions CI.
+> **Note:** Linting and syntax checking (`zsh -n` and `shellcheck`) are handled
+> automatically by GitHub Actions CI.
 
 ---
 
 ### 🔹 Optional: Pre-Commit Hook for Auto-Formatting
 
-To automatically format `src/.zshrc` before every commit:
+To automatically format `src/.zshrc` before every commit, run the provided setup
+script:
 
 ```bash
-cp scripts/git-hooks/pre-commit .git/hooks/pre-commit
-chmod +x .git/hooks/pre-commit
+scripts/setup.sh
 ```
 
-This ensures that all committed changes stay consistent with our formatting standards without manual intervention.
+This will install the pre-commit hook automatically.
+It ensures that all committed changes stay consistent with our formatting
+standards without manual intervention.
 
 ---
 

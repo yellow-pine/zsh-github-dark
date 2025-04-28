@@ -1,8 +1,9 @@
 # zsh-github-dark
 
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![shell](https://img.shields.io/badge/shell-zsh-green.svg)](https://www.zsh.org/)
 [![CI](https://github.com/yellow-pine/zsh-github-dark/actions/workflows/ci.yml/badge.svg)](https://github.com/yellow-pine/zsh-github-dark/actions/workflows/ci.yml)
+[![shell](https://img.shields.io/badge/shell-zsh-green.svg)](https://www.zsh.org/)
+[![shfmt](https://img.shields.io/badge/code%20style-shfmt-1abc9c.svg)](https://github.com/mvdan/sh)
 [![💛 Yellow Pine](https://img.shields.io/badge/%F0%9F%92%9B%20Yellow%20Pine-gray.svg)](https://github.com/yellow-pine)
 
 Minimalistic macOS zsh and Terminal configuration optimized for GitHub Dark themes.
@@ -10,7 +11,10 @@ Designed for clarity, speed, and a visually cohesive development environment.
 
 ## 🎯 Why zsh-github-dark?
 
-A minimal zsh and Terminal setup aligned with GitHub Dark themes — reusing an optimized Terminal profile, fine-tuning prompt colors, and keeping everything clean and fast.
+A minimal zsh and Terminal setup aligned with GitHub Dark themes — reusing an
+optimized Terminal profile, fine-tuning prompt colors, and keeping everything
+clean and fast.
+
 Ready for developers working with TypeScript, Python, and modern CLI workflows.
 
 ## 🎨 Terminal Preview
@@ -38,7 +42,7 @@ brew install pyenv nvm poetry
 ### 3. Clone the Repository and Set Up
 
 ```bash
-git clone https://github.com/yellow-pine/zsh-github-dark.git
+git clone <https://github.com/yellow-pine/zsh-github-dark.git>
 cd zsh-github-dark
 cp src/.zshrc ~/.zshrc
 exec zsh
@@ -46,7 +50,8 @@ exec zsh
 
 ### 4. Import the Terminal Profile
 
-Terminal profile: Double-click `src/github-dark.terminal` to import it, then set it as your default under **Terminal Settings → Profiles → Default**.
+Terminal profile: Double-click `src/github-dark.terminal` to import it, then set
+it as your default under **Terminal Settings → Profiles → Default**.
 
 ✅ You are now fully set up!
 
@@ -66,9 +71,12 @@ Terminal profile: Double-click `src/github-dark.terminal` to import it, then set
   - Cursor color changed to match Bold Text instead of orange
 - Provided file: `src/github-dark.terminal`
 
-## 🛠 Troubleshooting
+## 🛠 Troubleshooting & Contributions
 
-If anything doesn't work as expected, please check [TROUBLESHOOTING.md](TROUBLESHOOTING.md) first.
+If anything doesn't work as expected, please check:
+
+- [TROUBLESHOOTING.md](TROUBLESHOOTING.md) for setup issues
+- [CONTRIBUTING.md](CONTRIBUTING.md) for developer guidelines
 
 ## 📫 Contact
 
