@@ -1,22 +1,30 @@
-name: Repo Health Check
+name: CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [main]
   pull_request:
-    branches: [ "main" ]
+    branches: [main]
   workflow_dispatch:
 
 jobs:
-  validate:
+  zsh-lint:
+    name: Validate .zshrc Syntax
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Check basic repo structure
+      - name: Install zsh
         run: |
-          test -f src/.zshrc
+          sudo apt update
+          sudo apt install -y zsh
+
+      - name: Check .zshrc Syntax
+        run: |
+          zsh -n src/.zshrc
+
+      - name: Check files
+        run: |
           test -f src/github-dark.terminal
           test -f README.md
           test -f LICENSE
