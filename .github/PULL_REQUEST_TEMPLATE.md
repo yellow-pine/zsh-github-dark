@@ -1,23 +1,21 @@
-# 🚀 Pull Request Template
+# <!-- 🚀 Pull Request Template -->
 
-## What does this change?
+## Change Type
 
 - [ ] Bug fix
-- [ ] New feature
-- [ ] Documentation update
-- [ ] Other (describe below)
+- [ ] Feature
+- [ ] Documentation
+- [ ] Other
 
-## Details
+## Summary
 
-Briefly explain what you changed and why.
+Briefly describe what this change does.
 
 ## Checklist
 
-- [ ] Code tested locally
+- [ ] Tested locally
 - [ ] Prompt and Terminal colors look correct
 - [ ] No breaking changes
-- [ ] Follows project style and simplicity
+- [ ] Matches project style and simplicity
 
----
-
-Thank you for helping improve zsh-github-dark! 💛
+<!-- Thank you for contributing to zsh-github-dark! 💛 -->
