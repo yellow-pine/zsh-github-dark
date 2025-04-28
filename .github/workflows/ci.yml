@@ -1,0 +1,22 @@
+name: Repo Health Check
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Check basic repo structure
+        run: |
+          test -f src/.zshrc
+          test -f src/github-dark.terminal
+          test -f README.md
+          test -f LICENSE
