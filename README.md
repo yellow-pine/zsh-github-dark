@@ -42,7 +42,7 @@ brew install pyenv nvm poetry
 ### 3. Clone the Repository and Set Up
 
 ```bash
-git clone <https://github.com/yellow-pine/zsh-github-dark.git>
+git clone https://github.com/yellow-pine/zsh-github-dark.git
 cd zsh-github-dark
 cp src/.zshrc ~/.zshrc
 exec zsh
