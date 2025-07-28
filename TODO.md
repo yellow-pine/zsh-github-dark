@@ -66,7 +66,7 @@ Potential improvements for zsh-github-dark project, organized by category.
 
 ### Distribution Methods
 
-- [ ] **Create Homebrew formula**
+- [x] **Create Homebrew formula**
   - Write formula for homebrew-tap
   - Handle dependencies automatically
   - Simplify installation to `brew install zsh-github-dark`

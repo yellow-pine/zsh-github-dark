@@ -16,10 +16,15 @@ fi
 
 # Check if Terminal profile exists
 PROFILE_PATH="src/github-dark.terminal"
+# Check for Homebrew installation path as fallback
 if [ ! -f "$PROFILE_PATH" ]; then
-  echo -e "${RED}❌ Error: Terminal profile not found at $PROFILE_PATH${NC}"
-  echo "Please run this script from the project root directory."
-  exit 1
+  if command -v brew &> /dev/null && [ -f "$(brew --prefix)/share/zsh-github-dark/github-dark.terminal" ]; then
+    PROFILE_PATH="$(brew --prefix)/share/zsh-github-dark/github-dark.terminal"
+  else
+    echo -e "${RED}❌ Error: Terminal profile not found at $PROFILE_PATH${NC}"
+    echo "Please run this script from the project root directory."
+    exit 1
+  fi
 fi
 
 echo "🎨 Installing GitHub Dark Terminal profile..."

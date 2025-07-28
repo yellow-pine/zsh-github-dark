@@ -25,6 +25,14 @@ Here's a preview of the final setup:
 
 ## 🚀 Quick Start
 
+### Homebrew Installation (Coming Soon)
+
+```bash
+brew tap yellow-pine/tap
+brew install zsh-github-dark
+zsh-github-dark-init
+```
+
 ### Automated Setup (Recommended)
 
 Run the full setup script for a guided installation:

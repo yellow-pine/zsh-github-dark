@@ -98,7 +98,15 @@ fi
 
 # 5. Copy new .zshrc
 if confirm "Copy new .zshrc to home directory?"; then
-  cp src/.zshrc "$HOME/.zshrc"
+  # Check if we're running from Homebrew installation
+  if [ -f "src/.zshrc" ]; then
+    cp src/.zshrc "$HOME/.zshrc"
+  elif [ -f "$(brew --prefix)/share/zsh-github-dark/.zshrc" ]; then
+    cp "$(brew --prefix)/share/zsh-github-dark/.zshrc" "$HOME/.zshrc"
+  else
+    echo -e "${RED}❌ Error: .zshrc not found${NC}"
+    exit 1
+  fi
   echo -e "${GREEN}✅ Copied .zshrc${NC}"
 fi
 
@@ -106,7 +114,14 @@ fi
 echo ""
 echo -e "${YELLOW}🎨 Setting up Terminal profile...${NC}"
 if confirm "Install GitHub Dark Terminal profile?"; then
-  scripts/install-terminal-profile.sh
+  # Check if we're running from Homebrew installation
+  if [ -f "scripts/install-terminal-profile.sh" ]; then
+    scripts/install-terminal-profile.sh
+  elif command -v zsh-github-dark-terminal &> /dev/null; then
+    zsh-github-dark-terminal
+  else
+    echo -e "${YELLOW}⚠️  Terminal profile installer not found${NC}"
+  fi
 fi
 
 # 7. Setup git hooks for development
