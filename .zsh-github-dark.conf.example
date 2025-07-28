@@ -1,0 +1,25 @@
+# zsh-github-dark Configuration File
+# Copy this file to ~/.zsh-github-dark.conf to customize colors
+# All color values are ANSI color codes (0-255)
+
+# Prompt Colors
+export ZGD_USER_COLOR_OK="cyan"           # Username color when last command succeeded
+export ZGD_USER_COLOR_FAIL="1"            # Username color when last command failed (soft red)
+export ZGD_AT_COLOR="default"             # @ symbol color
+export ZGD_HOST_COLOR="3"                 # Hostname color (soft yellow)
+export ZGD_DIR_COLOR="green"              # Directory path color
+export ZGD_PROMPT_COLOR="242"             # Prompt symbol color (grey)
+export ZGD_BRANCH_COLOR="5"               # Git branch color (soft purple)
+export ZGD_TIME_COLOR="blue"              # Command execution time color
+
+# Root User Colors (when running as root)
+export ZGD_ROOT_COLOR="red"               # All prompt elements turn red for root
+
+# Performance Options
+export ZGD_GIT_CACHE_ENABLED="true"       # Enable git branch caching
+export ZGD_MIN_EXEC_TIME="5"              # Minimum execution time (seconds) to show timing
+
+# Feature Toggles
+export ZGD_SHOW_EXEC_TIME="true"          # Show command execution time
+export ZGD_SHOW_GIT_BRANCH="true"         # Show git branch in prompt
+export ZGD_SHOW_GIT_DIRTY="true"          # Show asterisk for uncommitted changes
