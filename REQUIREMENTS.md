@@ -67,10 +67,9 @@ These are recommended for developers:
 - **macOS 10.15-14.x**: Fully supported
 - **macOS 15+**: Should work but not yet tested
 
-### Terminal Emulators
-- **Terminal.app**: Fully supported with custom profile
-- **iTerm2**: Compatible but use default color scheme
-- **Alacritty/Kitty**: Compatible with standard ANSI colors
+### Terminal
+- **Terminal.app**: Required (included with macOS)
+- Custom GitHub Dark profile automatically installed
 
 ### Shell Compatibility
 - **zsh**: Primary target, fully supported

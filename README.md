@@ -50,21 +50,12 @@ This will:
 - Human-readable `lsd` output with matching color theme
 - No plugins, no bloated frameworks — pure native zsh
 
-## 🎨 Terminal Theme Support
+## 🎨 Terminal Theme
 
-### Terminal.app (macOS)
-- Custom profile with GitHub Dark colors
+- Custom Terminal.app profile with GitHub Dark colors
 - Font size: 12pt
 - Background opacity: 85%
-- Auto-installed during setup
-
-### Other Terminal Emulators
-Also includes themes for:
-- **iTerm2** - Native color scheme
-- **Kitty** - Configuration file
-- **Alacritty** - YAML color scheme
-
-The Terminal.app theme is automatically installed during setup.
+- Automatically installed during setup
 
 ## 🛠 Troubleshooting & Contributions
 

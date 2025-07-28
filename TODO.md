@@ -23,7 +23,7 @@ Remaining improvements that align with our simplicity-first approach.
   - Remove all other installation scripts
   - Embed terminal profile installation directly
 
-- [ ] **Remove terminal emulator variants**
+- [x] **Remove terminal emulator variants**
   - Focus only on Terminal.app (default macOS terminal)
   - Remove iTerm2, Kitty, Alacritty themes
   - Remove terminal theme installer
