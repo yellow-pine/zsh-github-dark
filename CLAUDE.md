@@ -68,13 +68,12 @@ This project includes GitHub MCP server configuration for enhanced Claude Code i
 
 1. **Copy the MCP configuration**:
    ```bash
-   cp .claude_mcp_config.json.example .claude_mcp_config.json
+   cp .mcp.json.example .mcp.json
    ```
 
-2. **Add the MCP server to Claude Code**:
-   ```bash
-   claude mcp add github-oauth --config .claude_mcp_config.json
-   ```
+2. **Claude Code will automatically detect the configuration**:
+   - The `.mcp.json` file is automatically loaded when you open the project
+   - No manual `claude mcp add` command needed
 
 3. **Authenticate when prompted**:
    - Claude Code will prompt for GitHub OAuth authentication
