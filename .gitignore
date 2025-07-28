@@ -9,3 +9,6 @@
 # Backup files
 *~
 *.bak
+
+# MCP configuration (may contain tokens)
+.claude_mcp_config.json

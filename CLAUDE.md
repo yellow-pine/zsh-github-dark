@@ -60,6 +60,40 @@ The `.zshrc` file includes:
 - Color scheme optimized for GitHub Dark Terminal theme
 - `lsd` aliases for enhanced directory listings
 
+## MCP (Model Context Protocol) Support
+
+This project includes GitHub MCP server configuration for enhanced Claude Code integration.
+
+### Setup GitHub MCP (OAuth - Recommended)
+
+1. **Copy the MCP configuration**:
+   ```bash
+   cp .claude_mcp_config.json.example .claude_mcp_config.json
+   ```
+
+2. **Add the MCP server to Claude Code**:
+   ```bash
+   claude mcp add github-oauth --config .claude_mcp_config.json
+   ```
+
+3. **Authenticate when prompted**:
+   - Claude Code will prompt for GitHub OAuth authentication
+   - No Personal Access Token required
+
+4. **Use GitHub features in Claude Code**:
+   - Reference issues/PRs: `@github what are the open issues?`
+   - Create PRs: `@github create a pull request for this branch`
+   - Review code: `@github review the changes in PR #123`
+
+### Available GitHub MCP Tools
+
+When configured, you'll have access to GitHub operations including:
+- Repository management
+- Issue and PR automation
+- CI/CD workflow intelligence
+- Code security analysis
+- Team collaboration features
+
 ## Development Guidelines
 
 ### Code Style
