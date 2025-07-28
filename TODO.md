@@ -83,7 +83,7 @@ Potential improvements for zsh-github-dark project, organized by category.
   - Offer to install missing dependencies via Homebrew
   - Version compatibility checks
 
-- [ ] **Document system requirements**
+- [x] **Document system requirements**
   - Minimum macOS version (test on older versions)
   - Apple Silicon vs Intel compatibility notes
   - Homebrew installation prerequisites

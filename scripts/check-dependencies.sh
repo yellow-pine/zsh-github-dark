@@ -18,6 +18,21 @@ if [[ "$OSTYPE" != "darwin"* ]]; then
   exit 1
 fi
 
+# Check macOS version
+MACOS_VERSION=$(sw_vers -productVersion)
+MACOS_MAJOR=$(echo "$MACOS_VERSION" | cut -d. -f1)
+MACOS_MINOR=$(echo "$MACOS_VERSION" | cut -d. -f2)
+
+echo -e "${YELLOW}Checking macOS version...${NC}"
+if [[ $MACOS_MAJOR -lt 10 ]] || ([[ $MACOS_MAJOR -eq 10 ]] && [[ $MACOS_MINOR -lt 15 ]]); then
+  echo -e "${RED}❌ macOS $MACOS_VERSION is not supported${NC}"
+  echo "This project requires macOS 10.15 (Catalina) or later."
+  exit 1
+else
+  echo -e "${GREEN}✅ macOS $MACOS_VERSION${NC}"
+fi
+echo ""
+
 # Required dependencies
 REQUIRED_DEPS=(
   "coreutils:GNU core utilities"

@@ -17,6 +17,14 @@ clean and fast.
 
 Ready for developers working with TypeScript, Python, and modern CLI workflows.
 
+## 📋 Requirements
+
+- macOS 10.15 (Catalina) or later
+- Homebrew package manager
+- Internet connection for installation
+
+See [REQUIREMENTS.md](REQUIREMENTS.md) for detailed system requirements.
+
 ## 🎨 Terminal Preview
 
 Here's a preview of the final setup:
