@@ -47,7 +47,7 @@ Remaining improvements that align with our simplicity-first approach.
 
 ### Documentation
 
-- [ ] **Simplify README**
+- [x] **Simplify README**
   - Remove all mentions of customization
   - Remove alternative installation methods
   - Focus on the one-line installer only
