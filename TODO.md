@@ -52,7 +52,7 @@ Potential improvements for zsh-github-dark project, organized by category.
 
 ### Missing Automation
 
-- [ ] **Create Terminal profile installer**
+- [x] **Create Terminal profile installer**
   - Script to programmatically import terminal profile
   - Use `osascript` to automate Terminal.app configuration
   - Handle existing profiles gracefully

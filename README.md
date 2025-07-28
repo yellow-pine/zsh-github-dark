@@ -50,7 +50,12 @@ exec zsh
 
 ### 4. Import the Terminal Profile
 
-Terminal profile: Double-click `src/github-dark.terminal` to import it, then set
+Option A: Run the installer script:
+```bash
+scripts/install-terminal-profile.sh
+```
+
+Option B: Manually double-click `src/github-dark.terminal` to import it, then set
 it as your default under **Terminal Settings → Profiles → Default**.
 
 ✅ You are now fully set up!
