@@ -31,7 +31,8 @@ shfmt -d src/.zshrc
 
 ```bash
 # Install pre-commit hook for automatic formatting
-scripts/setup.sh
+cp git-hooks/pre-commit .git/hooks/
+chmod +x .git/hooks/pre-commit
 ```
 
 ### CI/CD
@@ -46,12 +47,10 @@ The project uses GitHub Actions for continuous integration. The CI pipeline:
 
 ### Project Structure
 
-- `src/.zshrc` - Main zsh configuration file containing prompt setup, aliases,
-and environment configuration
-- `src/github-dark.terminal` - macOS Terminal profile with GitHub Dark theme customizations
-- `scripts/` - Development and setup scripts
-  - `setup.sh` - Installs pre-commit hooks
-  - `git-hooks/pre-commit` - Auto-formats `.zshrc` before commits
+- `install.sh` - One-line installer script
+- `src/.zshrc` - Main zsh configuration file with prompt and git integration
+- `src/github-dark.terminal` - macOS Terminal profile with GitHub Dark theme
+- `git-hooks/pre-commit` - Auto-formats `.zshrc` before commits
 
 ### Key Components
 

@@ -107,23 +107,80 @@ else
   run_cmd git clone --quiet "$REPO_URL" "$INSTALL_DIR"
 fi
 
-# Run the full setup script
+# Install dependencies
 echo ""
-echo -e "${YELLOW}🚀 Running setup...${NC}"
+echo -e "${YELLOW}📦 Installing dependencies...${NC}"
 
 if [ "$DRY_RUN" = true ]; then
-  echo -e "${BLUE}[DRY RUN] Would run: $INSTALL_DIR/scripts/full-setup.sh${NC}"
-  echo -e "${BLUE}[DRY RUN] This would:${NC}"
-  echo -e "${BLUE}  - Install required packages (coreutils, lsd, zsh)${NC}"
-  echo -e "${BLUE}  - Configure zsh as default shell${NC}"
-  echo -e "${BLUE}  - Create ~/.nvm directory${NC}"
-  echo -e "${BLUE}  - Backup and install .zshrc${NC}"
-  echo -e "${BLUE}  - Import GitHub Dark Terminal profile${NC}"
-  echo -e "${BLUE}  - Optionally install developer tools${NC}"
-  echo -e "${BLUE}  - Enable performance optimizations${NC}"
+  echo -e "${BLUE}[DRY RUN] Would check and install: coreutils, lsd, zsh${NC}"
 else
-  cd "$INSTALL_DIR"
-  ./scripts/full-setup.sh
+  # Check and install required dependencies
+  MISSING_DEPS=()
+  for cmd in coreutils lsd zsh; do
+    if ! command -v $cmd &> /dev/null && ! command -v g$cmd &> /dev/null; then
+      MISSING_DEPS+=($cmd)
+    fi
+  done
+  
+  if [ ${#MISSING_DEPS[@]} -ne 0 ]; then
+    echo "Installing: ${MISSING_DEPS[*]}"
+    brew install "${MISSING_DEPS[@]}"
+  else
+    echo -e "${GREEN}✅ All dependencies already installed${NC}"
+  fi
+fi
+
+# Configure shell
+echo ""
+echo -e "${YELLOW}🐚 Configuring shell...${NC}"
+
+if [ "$DRY_RUN" = true ]; then
+  echo -e "${BLUE}[DRY RUN] Would set zsh as default shell${NC}"
+else
+  CURRENT_SHELL=$(echo $SHELL)
+  if [[ "$CURRENT_SHELL" != */zsh ]]; then
+    chsh -s /bin/zsh
+    echo -e "${GREEN}✅ Default shell changed to zsh${NC}"
+  else
+    echo -e "${GREEN}✅ Already using zsh${NC}"
+  fi
+fi
+
+# Install .zshrc
+echo ""
+echo -e "${YELLOW}📄 Installing .zshrc...${NC}"
+
+if [ "$DRY_RUN" = true ]; then
+  echo -e "${BLUE}[DRY RUN] Would backup existing .zshrc and install new one${NC}"
+else
+  if [ -f "$HOME/.zshrc" ]; then
+    BACKUP_FILE="$HOME/.zshrc.backup.$(date +%Y%m%d_%H%M%S)"
+    cp "$HOME/.zshrc" "$BACKUP_FILE"
+    echo -e "${GREEN}✅ Backed up existing .zshrc to $BACKUP_FILE${NC}"
+  fi
+  
+  cp "$INSTALL_DIR/src/.zshrc" "$HOME/.zshrc"
+  echo -e "${GREEN}✅ Installed .zshrc${NC}"
+fi
+
+# Install Terminal profile
+echo ""
+echo -e "${YELLOW}🎨 Installing Terminal profile...${NC}"
+
+if [ "$DRY_RUN" = true ]; then
+  echo -e "${BLUE}[DRY RUN] Would import GitHub Dark Terminal profile${NC}"
+else
+  # Import the terminal profile using osascript
+  osascript <<EOF
+tell application "Terminal"
+  set profilePath to POSIX file "$INSTALL_DIR/src/github-dark.terminal"
+  do shell script "open " & quoted form of POSIX path of profilePath
+end tell
+EOF
+  
+  echo -e "${GREEN}✅ Terminal profile imported${NC}"
+  echo ""
+  echo "👉 Set 'GitHub Dark' as default in Terminal → Settings → Profiles"
 fi
 
 # Cleanup

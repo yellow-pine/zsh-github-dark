@@ -64,10 +64,7 @@ Also includes themes for:
 - **Kitty** - Configuration file
 - **Alacritty** - YAML color scheme
 
-Install themes with:
-```bash
-scripts/install-terminal-theme.sh
-```
+The Terminal.app theme is automatically installed during setup.
 
 ## 🛠 Troubleshooting & Contributions
 

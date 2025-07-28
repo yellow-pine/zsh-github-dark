@@ -48,13 +48,14 @@ We use `shfmt` to automatically format `src/.zshrc` for consistency.
 
 ### 🔹 Pre-Commit Hook Setup
 
-To enable automatic formatting of `src/.zshrc` before every commit, run:
+To enable automatic formatting of `src/.zshrc` before every commit, manually copy the pre-commit hook:
 
 ```bash
-scripts/setup.sh
+cp git-hooks/pre-commit .git/hooks/
+chmod +x .git/hooks/pre-commit
 ```
 
-This installs the pre-commit hook to ensure consistent formatting standards.
+This ensures consistent formatting standards.
 
 ---
 

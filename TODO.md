@@ -18,7 +18,7 @@ Remaining improvements that align with our simplicity-first approach.
   - Remove configuration loading from `.zshrc`
   - Hard-code the best default colors
 
-- [ ] **Consolidate installation scripts**
+- [x] **Consolidate installation scripts**
   - Keep only `install.sh` (one-line installer)
   - Remove all other installation scripts
   - Embed terminal profile installation directly
