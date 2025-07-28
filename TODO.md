@@ -1,188 +1,85 @@
-# TODO
+# TODO (Simplified)
 
-Potential improvements for zsh-github-dark project, organized by category.
+Remaining improvements that align with our simplicity-first approach.
 
-## 🔧 Implementation Improvements
+## 🎯 Guiding Principles
 
-### Shell Script Robustness
+1. **One-command installation** - Users should get started with a single command
+2. **Zero configuration** - It should work perfectly out of the box  
+3. **No options** - The defaults should be so good that options aren't needed
+4. **Minimal dependencies** - Only what's absolutely necessary
 
-- [x] **Validate git repository in setup.sh**
-  - Check if `.git` directory exists before copying hooks
-  - Exit gracefully with helpful error message if not in a git repo
+## 🧹 Simplification Tasks
 
-  ```bash
-  if [ ! -d ".git" ]; then
-    echo "❌ Error: Not a git repository. Please run from project root."
-    exit 1
-  fi
-  ```
+### Remove Complexity
 
-- [x] **Add shfmt validation in pre-commit hook**
-  - Check if `shfmt` is installed before attempting to format
-  - Provide installation instructions if missing
+- [ ] **Remove configuration file support**
+  - Delete `.zsh-github-dark.conf.example`
+  - Remove configuration loading from `.zshrc`
+  - Hard-code the best default colors
 
-  ```bash
-  if ! command -v shfmt &> /dev/null; then
-    echo "❌ shfmt not found. Install with: brew install shfmt"
-    exit 1
-  fi
-  ```
+- [ ] **Consolidate installation scripts**
+  - Keep only `install.sh` (one-line installer)
+  - Remove all other installation scripts
+  - Embed terminal profile installation directly
 
-- [x] **Handle existing git hooks**
-  - Check for existing pre-commit hooks
-  - Offer to backup or merge with existing hooks
-  - Add option to force overwrite with `-f` flag
+- [ ] **Remove terminal emulator variants**
+  - Focus only on Terminal.app (default macOS terminal)
+  - Remove iTerm2, Kitty, Alacritty themes
+  - Remove terminal theme installer
 
-### Performance Optimizations
+- [ ] **Simplify dependency management**
+  - Remove optional dependencies (pyenv, nvm, poetry)
+  - Keep only essential: coreutils, lsd, zsh
+  - Remove dependency checker script
 
-- [x] **Replace bc with native zsh arithmetic**
-  - Use zsh's built-in floating point math instead of bc dependency
-  - Example: `(( delta = EPOCHREALTIME - __TIMER_START ))`
-  - Remove bc from prerequisites
-
-- [x] **Optimize git branch detection**
-  - Cache git branch status between prompts
-  - Only refresh on directory change or after git commands
-  - Use git's `__git_ps1` function if available for better performance
-
-- [x] **Speed up zsh startup with compinit -C**
-  - Add `-C` flag to skip security checks on trusted systems
-  - Document security implications in comments
-  - Make it configurable via environment variable
-
-### Missing Automation
-
-- [x] **Create Terminal profile installer**
-  - Script to programmatically import terminal profile
-  - Use `osascript` to automate Terminal.app configuration
-  - Handle existing profiles gracefully
-
-- [x] **Automate manual setup steps**
-  - Script to create `~/.nvm` directory
-  - Automate shell change with proper permission handling
-  - Verify and set up all prerequisites
-
-## 📦 Packaging Improvements
-
-### Distribution Methods
-
-- [x] **Create Homebrew formula**
-  - Write formula for homebrew-tap
-  - Handle dependencies automatically
-  - Simplify installation to `brew install zsh-github-dark`
-
-- [x] **Create comprehensive installer script**
-  - Single command installation: `curl -fsSL ... | bash`
-  - Interactive mode for customization
-  - Dry-run option to preview changes
-
-### Dependency Management
-
-- [x] **Add dependency checker script**
-  - Check for all required tools (coreutils, lsd, zsh)
-  - Offer to install missing dependencies via Homebrew
-  - Version compatibility checks
-
-- [x] **Document system requirements**
-  - Minimum macOS version (test on older versions)
-  - Apple Silicon vs Intel compatibility notes
-  - Homebrew installation prerequisites
-
-### Configuration Management
-
-- [x] **Add color customization support**
-  - Environment variables for all color values
-  - Example: `ZGD_PROMPT_COLOR`, `ZGD_BRANCH_COLOR`
-  - Configuration file support (~/.zsh-github-dark.conf)
-
-- [x] **Support multiple terminal emulators**
-  - iTerm2 color scheme export
-  - Alacritty configuration
-  - Kitty terminal support
-  - Generic terminal color codes
-
-## 🧪 Testing Infrastructure
+## ✅ Essential Improvements
 
 ### Code Quality
 
-- [ ] **Add shellcheck to CI pipeline**
-  - Lint all shell scripts with shellcheck
-  - Configure appropriate exclusions
-  - Add shellcheck installation to CI
+- [ ] **Add shellcheck to CI**
+  - Basic linting for shell scripts
+  - Ensure scripts are error-free
 
-- [ ] **Create test suite**
-  - Test prompt generation with different states
-  - Verify git integration functionality
-  - Test installation scripts in Docker containers
+- [ ] **Add basic tests**
+  - Test that .zshrc syntax is valid
+  - Test one-line installer works
 
-### Continuous Integration
+### Documentation
 
-- [ ] **Expand CI matrix**
-  - Test on multiple macOS versions
-  - Test both Intel and Apple Silicon (if possible)
-  - Add installation tests
+- [ ] **Simplify README**
+  - Remove all mentions of customization
+  - Remove alternative installation methods
+  - Focus on the one-line installer only
 
-## 📚 Documentation Enhancements
+- [ ] **Add simple troubleshooting**
+  - 3-5 most common issues only
+  - Simple solutions
 
-### Visual Documentation
+- [ ] **Create uninstall script**
+  - One command to remove everything
+  - Restore original settings
 
-- [ ] **Add comprehensive screenshots**
-  - Normal prompt state
-  - Error state (red prompt)
-  - Git dirty state (with asterisk)
-  - Long command timing display
-  - Root user prompt
+## ❌ Items to NOT Implement
 
-### User Guides
+These add complexity without significant value:
 
-- [ ] **Create FAQ section**
-  - Common installation issues
-  - Troubleshooting guide
-  - Performance tuning tips
+- Plugin systems
+- Theme variants or builders  
+- Multiple terminal emulator support
+- Configuration files
+- Color customization
+- Feature toggles
+- IDE integrations
+- Advanced git features
+- Performance options
 
-- [ ] **Add uninstall instructions**
-  - Clean removal steps
-  - How to revert to default shell settings
-  - Backup restoration guide
+## 📋 Final State Vision
 
-### Developer Documentation
-
-- [ ] **Document contribution workflow**
-  - How to test changes locally
-  - Code style guidelines for shell scripts
-  - PR review checklist
-
-## 🔒 Security Enhancements
-
-### Security Hardening
-
-- [ ] **Add security checks**
-  - Validate all file paths before operations
-  - Add checksum verification for downloads
-  - Implement proper error handling for all file operations
-
-- [ ] **Create security policy**
-  - Document security considerations
-  - Add SECURITY.md best practices
-  - GPG signing for releases
-
-## 🎯 Future Features
-
-### Advanced Features
-
-- [ ] **Plugin system**
-  - Allow custom prompt segments
-  - Support for additional VCS (mercurial, svn)
-  - Extensible alias system
-
-- [ ] **Theme variants**
-  - GitHub Light theme option
-  - High contrast variant
-  - Custom theme builder
-
-### Integration Features
-
-- [ ] **IDE integration**
-  - VS Code integrated terminal configuration
-  - JetBrains IDE terminal setup
-  - Sublime Text terminal configuration
+The ideal end state:
+1. User runs one command: `curl ... | bash`
+2. Everything is installed and configured automatically
+3. Terminal looks great with GitHub Dark theme
+4. Fast, minimal zsh prompt with git support
+5. No configuration needed or possible
+6. To uninstall: `curl ... | bash -s -- --uninstall`
