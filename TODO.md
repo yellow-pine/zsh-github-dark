@@ -26,7 +26,7 @@ Potential improvements for zsh-github-dark project, organized by category.
   fi
   ```
 
-- [ ] **Handle existing git hooks**
+- [x] **Handle existing git hooks**
   - Check for existing pre-commit hooks
   - Offer to backup or merge with existing hooks
   - Add option to force overwrite with `-f` flag
