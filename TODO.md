@@ -13,7 +13,7 @@ Remaining improvements that align with our simplicity-first approach.
 
 ### Remove Complexity
 
-- [ ] **Remove configuration file support**
+- [x] **Remove configuration file support**
   - Delete `.zsh-github-dark.conf.example`
   - Remove configuration loading from `.zshrc`
   - Hard-code the best default colors

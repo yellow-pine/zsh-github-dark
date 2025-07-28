@@ -19,9 +19,6 @@
 # 5. Poetry installed via Homebrew; no virtualenv setup needed except optional:
 #      export POETRY_VIRTUALENVS_IN_PROJECT=true
 #
-# 6. For faster startup on trusted systems, set:
-#      export ZSH_DISABLE_COMPFIX=true
-#
 # This .zshrc includes:
 #  - Dynamic prompt (timing, git branch, dirty state, error highlighting)
 #  - lsd colorized directory listings
@@ -44,28 +41,16 @@ alias l='lsd --group-dirs=first --icon never'
 alias dir='lsd --group-dirs=first --icon never'
 alias vdir='lsd -l --group-dirs=first --icon never'
 
-# 🎨 Load custom configuration if exists
-if [ -f "$HOME/.zsh-github-dark.conf" ]; then
-  source "$HOME/.zsh-github-dark.conf"
-fi
-
 # ⚡ Dynamic Prompt Setup (timing, git, errors)
 local RESET="%f%k"
-local USER_COLOR_OK="%F{${ZGD_USER_COLOR_OK:-cyan}}"
-local USER_COLOR_FAIL="%F{${ZGD_USER_COLOR_FAIL:-1}}" # soft red
-local AT_COLOR="%F{${ZGD_AT_COLOR:-default}}"
-local HOST_COLOR="%F{${ZGD_HOST_COLOR:-3}}" # soft yellow
-local DIR_COLOR="%F{${ZGD_DIR_COLOR:-green}}"
-local PROMPT_COLOR="%F{${ZGD_PROMPT_COLOR:-242}}"
-local BRANCH_COLOR="%F{${ZGD_BRANCH_COLOR:-5}}" # soft purple
-local TIME_COLOR="%F{${ZGD_TIME_COLOR:-blue}}"
-
-# Configuration with defaults
-local GIT_CACHE_ENABLED="${ZGD_GIT_CACHE_ENABLED:-true}"
-local MIN_EXEC_TIME="${ZGD_MIN_EXEC_TIME:-5}"
-local SHOW_EXEC_TIME="${ZGD_SHOW_EXEC_TIME:-true}"
-local SHOW_GIT_BRANCH="${ZGD_SHOW_GIT_BRANCH:-true}"
-local SHOW_GIT_DIRTY="${ZGD_SHOW_GIT_DIRTY:-true}"
+local USER_COLOR_OK="%F{cyan}"
+local USER_COLOR_FAIL="%F{1}" # soft red
+local AT_COLOR="%F{default}"
+local HOST_COLOR="%F{3}" # soft yellow
+local DIR_COLOR="%F{green}"
+local PROMPT_COLOR="%F{242}"
+local BRANCH_COLOR="%F{5}" # soft purple
+local TIME_COLOR="%F{blue}"
 
 typeset -g __TIMER_START=0
 typeset -g __TIMER_END=0
@@ -85,13 +70,8 @@ precmd() {
 }
 
 _git_branch() {
-  # Skip if git branch display is disabled
-  if [[ "$SHOW_GIT_BRANCH" != "true" ]]; then
-    return
-  fi
-  
-  # Use cached value if enabled and we're in the same directory
-  if [[ "$GIT_CACHE_ENABLED" == "true" && "$PWD" == "$__GIT_BRANCH_PWD" && -n "$__GIT_BRANCH_PWD" ]]; then
+  # Use cached value if we're in the same directory
+  if [[ "$PWD" == "$__GIT_BRANCH_PWD" && -n "$__GIT_BRANCH_PWD" ]]; then
     echo "$__GIT_BRANCH"
     return
   fi
@@ -108,7 +88,7 @@ _git_branch() {
   
   local branch=$(command git rev-parse --abbrev-ref HEAD 2>/dev/null)
   if [[ -n $branch ]]; then
-    if [[ "$SHOW_GIT_DIRTY" == "true" ]] && ! git diff --quiet --ignore-submodules HEAD 2>/dev/null; then
+    if ! git diff --quiet --ignore-submodules HEAD 2>/dev/null; then
       __GIT_BRANCH="${branch}*"
     else
       __GIT_BRANCH="$branch"
@@ -129,18 +109,17 @@ build_prompt() {
   fi
 
   if [[ $EUID -eq 0 ]]; then
-    local ROOT_COLOR="${ZGD_ROOT_COLOR:-red}"
-    USER_COLOR="%F{${ROOT_COLOR}}%B"
-    HOST_COLOR="%F{${ROOT_COLOR}}%B"
-    DIR_COLOR="%F{${ROOT_COLOR}}%B"
+    USER_COLOR="%F{red}%B"
+    HOST_COLOR="%F{red}%B"
+    DIR_COLOR="%F{red}%B"
   fi
 
   local TIME_DIFF=""
-  if [[ "$SHOW_EXEC_TIME" == "true" && -n $__TIMER_START && -n $__TIMER_END ]]; then
+  if [[ -n $__TIMER_START && -n $__TIMER_END ]]; then
     if [[ $__TIMER_START != 0 && $__TIMER_END != 0 ]]; then
       # Use zsh's built-in floating point arithmetic
       local delta=$(( __TIMER_END - __TIMER_START ))
-      if (( delta > MIN_EXEC_TIME )); then
+      if (( delta > 5 )); then
         # Format to 2 decimal places
         local seconds=$(printf "%.2f" $delta)
         TIME_DIFF=" ${TIME_COLOR}(took ${seconds}s)"

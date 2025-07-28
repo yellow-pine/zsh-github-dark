@@ -115,15 +115,6 @@ if confirm "Copy new .zshrc to home directory?"; then
     exit 1
   fi
   echo -e "${GREEN}✅ Copied .zshrc${NC}"
-  
-  # Copy example configuration if no config exists
-  if [ ! -f "$HOME/.zsh-github-dark.conf" ]; then
-    if [ -f ".zsh-github-dark.conf.example" ]; then
-      cp .zsh-github-dark.conf.example "$HOME/.zsh-github-dark.conf"
-      echo -e "${GREEN}✅ Created configuration file at ~/.zsh-github-dark.conf${NC}"
-      echo -e "${YELLOW}   Edit this file to customize colors and features${NC}"
-    fi
-  fi
 fi
 
 # 6. Install Terminal profile
