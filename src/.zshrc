@@ -107,8 +107,8 @@ build_prompt() {
   if [[ -n $__TIMER_START && -n $__TIMER_END ]]; then
     if [[ $__TIMER_START != 0 && $__TIMER_END != 0 ]]; then
       # Use zsh's built-in floating point arithmetic
-      local delta=$(( __TIMER_END - __TIMER_START ))
-      if (( delta > 5 )); then
+      local delta=$((__TIMER_END - __TIMER_START))
+      if ((delta > 5)); then
         # Format to 2 decimal places
         local seconds=$(printf "%.2f" $delta)
         TIME_DIFF=" ${TIME_COLOR}(took ${seconds}s)"
