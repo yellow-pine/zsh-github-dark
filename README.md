@@ -60,6 +60,16 @@ it as your default under **Terminal Settings → Profiles → Default**.
 
 ✅ You are now fully set up!
 
+### 5. (Optional) Performance Optimization
+
+For faster shell startup on trusted systems, add this to your environment:
+
+```bash
+export ZSH_DISABLE_COMPFIX=true
+```
+
+This skips zsh completion security checks, improving startup time.
+
 ## 🛠 Features
 
 - GitHub Dark-optimized zsh prompt
