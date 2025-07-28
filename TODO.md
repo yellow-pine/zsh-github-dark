@@ -9,6 +9,7 @@ Potential improvements for zsh-github-dark project, organized by category.
 - [x] **Validate git repository in setup.sh**
   - Check if `.git` directory exists before copying hooks
   - Exit gracefully with helpful error message if not in a git repo
+
   ```bash
   if [ ! -d ".git" ]; then
     echo "❌ Error: Not a git repository. Please run from project root."
@@ -19,6 +20,7 @@ Potential improvements for zsh-github-dark project, organized by category.
 - [x] **Add shfmt validation in pre-commit hook**
   - Check if `shfmt` is installed before attempting to format
   - Provide installation instructions if missing
+
   ```bash
   if ! command -v shfmt &> /dev/null; then
     echo "❌ shfmt not found. Install with: brew install shfmt"
