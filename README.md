@@ -25,6 +25,18 @@ Here's a preview of the final setup:
 
 ## 🚀 Quick Start
 
+```bash
+git clone https://github.com/yellow-pine/zsh-github-dark.git
+cd zsh-github-dark
+scripts/full-setup.sh
+```
+
+This will:
+- Install all required packages (coreutils, lsd, zsh)
+- Set up your shell configuration
+- Import the GitHub Dark Terminal profile
+- Configure optional developer tools (pyenv, nvm, poetry)
+
 ### Homebrew Installation (Coming Soon)
 
 ```bash
@@ -32,63 +44,6 @@ brew tap yellow-pine/tap
 brew install zsh-github-dark
 zsh-github-dark-init
 ```
-
-### Automated Setup (Recommended)
-
-Run the full setup script for a guided installation:
-
-```bash
-git clone https://github.com/yellow-pine/zsh-github-dark.git
-cd zsh-github-dark
-scripts/full-setup.sh
-```
-
-### Manual Setup
-
-#### 1. Install Required Packages
-
-```bash
-brew install coreutils lsd zsh
-```
-
-#### 2. (Optional) Install Developer Tools
-
-Recommended if you work with Python, Node, or Poetry:
-
-```bash
-brew install pyenv nvm poetry
-```
-
-#### 3. Clone the Repository and Set Up
-
-```bash
-git clone https://github.com/yellow-pine/zsh-github-dark.git
-cd zsh-github-dark
-cp src/.zshrc ~/.zshrc
-exec zsh
-```
-
-#### 4. Import the Terminal Profile
-
-Option A: Run the installer script:
-```bash
-scripts/install-terminal-profile.sh
-```
-
-Option B: Manually double-click `src/github-dark.terminal` to import it, then set
-it as your default under **Terminal Settings → Profiles → Default**.
-
-✅ You are now fully set up!
-
-#### 5. (Optional) Performance Optimization
-
-For faster shell startup on trusted systems, add this to your environment:
-
-```bash
-export ZSH_DISABLE_COMPFIX=true
-```
-
-This skips zsh completion security checks, improving startup time.
 
 ## 🛠 Features
 

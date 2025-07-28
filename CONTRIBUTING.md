@@ -46,18 +46,15 @@ We use `shfmt` to automatically format `src/.zshrc` for consistency.
 
 ---
 
-### 🔹 Optional: Pre-Commit Hook for Auto-Formatting
+### 🔹 Pre-Commit Hook Setup
 
-To automatically format `src/.zshrc` before every commit, run the provided
-setup script:
+To enable automatic formatting of `src/.zshrc` before every commit, run:
 
 ```bash
 scripts/setup.sh
 ```
 
-This will install the pre-commit hook automatically. It ensures that all
-committed changes stay consistent with our formatting standards without
-manual intervention.
+This installs the pre-commit hook to ensure consistent formatting standards.
 
 ---
 

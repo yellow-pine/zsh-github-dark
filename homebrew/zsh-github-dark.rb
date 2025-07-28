@@ -35,15 +35,10 @@ class ZshGithubDark < Formula
       echo "🚀 zsh-github-dark Homebrew Installation"
       echo ""
       
-      # Check if .zshrc already exists
+      # Backup existing .zshrc if present
       if [ -f "$HOME/.zshrc" ]; then
-        echo "⚠️  Existing .zshrc found"
-        read -p "Backup to ~/.zshrc.backup? (y/n) " -n 1 -r
-        echo
-        if [[ $REPLY =~ ^[Yy]$ ]]; then
-          cp "$HOME/.zshrc" "$HOME/.zshrc.backup"
-          echo "✅ Backed up existing .zshrc"
-        fi
+        cp "$HOME/.zshrc" "$HOME/.zshrc.backup.$(date +%Y%m%d_%H%M%S)"
+        echo "✅ Backed up existing .zshrc"
       fi
       
       # Copy .zshrc
@@ -51,15 +46,10 @@ class ZshGithubDark < Formula
       echo "✅ Installed .zshrc"
       
       # Import terminal profile
+      open "$SHARE_DIR/github-dark.terminal"
+      echo "✅ Terminal profile imported"
       echo ""
-      read -p "Import GitHub Dark Terminal profile? (y/n) " -n 1 -r
-      echo
-      if [[ $REPLY =~ ^[Yy]$ ]]; then
-        open "$SHARE_DIR/github-dark.terminal"
-        echo "✅ Terminal profile imported"
-        echo ""
-        echo "Set it as default in Terminal → Settings → Profiles"
-      fi
+      echo "👉 Set 'GitHub Dark' as default in Terminal → Settings → Profiles"
       
       echo ""
       echo "✅ Setup complete! Open a new terminal to see changes."
@@ -73,23 +63,11 @@ class ZshGithubDark < Formula
 
   def caveats
     <<~EOS
-      To get started with zsh-github-dark:
+      To complete installation, run:
       
         zsh-github-dark-init
       
-      This will install the .zshrc and optionally import the Terminal profile.
-      
-      For a full guided setup including optional dependencies:
-      
-        zsh-github-dark-setup
-      
-      To only install the Terminal profile:
-      
-        zsh-github-dark-terminal
-      
-      Optional: For faster startup on trusted systems, add to your environment:
-      
-        export ZSH_DISABLE_COMPFIX=true
+      This will set up your .zshrc and Terminal profile.
     EOS
   end
 

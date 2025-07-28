@@ -159,9 +159,10 @@ fi
 # 9. Performance optimization
 echo ""
 echo -e "${YELLOW}⚡ Performance optimization...${NC}"
-echo "For faster shell startup on trusted systems, you can add:"
-echo -e "${BLUE}export ZSH_DISABLE_COMPFIX=true${NC}"
-echo "to your ~/.zshenv or before sourcing .zshrc"
+if confirm "Enable faster shell startup (recommended for trusted systems)?"; then
+  echo "export ZSH_DISABLE_COMPFIX=true" >> "$HOME/.zshenv"
+  echo -e "${GREEN}✅ Enabled fast startup mode${NC}"
+fi
 
 # 10. Final instructions
 echo ""
