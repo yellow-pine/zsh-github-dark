@@ -1,0 +1,40 @@
+# GitHub Dark color scheme for Alacritty
+# Add this to your alacritty.yml configuration
+
+colors:
+  # Default colors
+  primary:
+    background: '#14191f'
+    foreground: '#c8ced1'
+    
+  # Cursor colors
+  cursor:
+    text: '#14191f'
+    cursor: '#f2f7f8'
+    
+  # Selection colors
+  selection:
+    text: '#c8ced1'
+    background: '#28363f'
+    
+  # Normal colors
+  normal:
+    black:   '#20262d'
+    red:     '#ff6666'
+    green:   '#98c379'
+    yellow:  '#e5c07b'
+    blue:    '#3c8dff'
+    magenta: '#b294bb'
+    cyan:    '#55cfbb'
+    white:   '#c8ced1'
+    
+  # Bright colors
+  bright:
+    black:   '#45525e'
+    red:     '#ff6666'
+    green:   '#5bbd69'
+    yellow:  '#f0c674'
+    blue:    '#659fff'
+    magenta: '#cc99cc'
+    cyan:    '#66ddcc'
+    white:   '#f2f7f8'

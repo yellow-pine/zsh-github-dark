@@ -95,7 +95,7 @@ Potential improvements for zsh-github-dark project, organized by category.
   - Example: `ZGD_PROMPT_COLOR`, `ZGD_BRANCH_COLOR`
   - Configuration file support (~/.zsh-github-dark.conf)
 
-- [ ] **Support multiple terminal emulators**
+- [x] **Support multiple terminal emulators**
   - iTerm2 color scheme export
   - Alacritty configuration
   - Kitty terminal support

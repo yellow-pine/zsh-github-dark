@@ -50,14 +50,24 @@ This will:
 - Human-readable `lsd` output with matching color theme
 - No plugins, no bloated frameworks — pure native zsh
 
-## 🎨 Terminal Theme Details
+## 🎨 Terminal Theme Support
 
-- Based on [GitHub Dark](https://terminalcolors.com/themes/github/dark/)
-- Minor Yellow Pine customizations:
-  - Font size set to 12
-  - Background opacity set to 85%
-  - Cursor color changed to match Bold Text instead of orange
-- Provided file: `src/github-dark.terminal`
+### Terminal.app (macOS)
+- Custom profile with GitHub Dark colors
+- Font size: 12pt
+- Background opacity: 85%
+- Auto-installed during setup
+
+### Other Terminal Emulators
+Also includes themes for:
+- **iTerm2** - Native color scheme
+- **Kitty** - Configuration file
+- **Alacritty** - YAML color scheme
+
+Install themes with:
+```bash
+scripts/install-terminal-theme.sh
+```
 
 ## 🛠 Troubleshooting & Contributions
 
