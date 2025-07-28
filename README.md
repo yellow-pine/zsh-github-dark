@@ -25,13 +25,25 @@ Here's a preview of the final setup:
 
 ## 🚀 Quick Start
 
-### 1. Install Required Packages
+### Automated Setup (Recommended)
+
+Run the full setup script for a guided installation:
+
+```bash
+git clone https://github.com/yellow-pine/zsh-github-dark.git
+cd zsh-github-dark
+scripts/full-setup.sh
+```
+
+### Manual Setup
+
+#### 1. Install Required Packages
 
 ```bash
 brew install coreutils lsd zsh
 ```
 
-### 2. (Optional) Install Developer Tools
+#### 2. (Optional) Install Developer Tools
 
 Recommended if you work with Python, Node, or Poetry:
 
@@ -39,7 +51,7 @@ Recommended if you work with Python, Node, or Poetry:
 brew install pyenv nvm poetry
 ```
 
-### 3. Clone the Repository and Set Up
+#### 3. Clone the Repository and Set Up
 
 ```bash
 git clone https://github.com/yellow-pine/zsh-github-dark.git
@@ -48,7 +60,7 @@ cp src/.zshrc ~/.zshrc
 exec zsh
 ```
 
-### 4. Import the Terminal Profile
+#### 4. Import the Terminal Profile
 
 Option A: Run the installer script:
 ```bash
@@ -60,7 +72,7 @@ it as your default under **Terminal Settings → Profiles → Default**.
 
 ✅ You are now fully set up!
 
-### 5. (Optional) Performance Optimization
+#### 5. (Optional) Performance Optimization
 
 For faster shell startup on trusted systems, add this to your environment:
 
