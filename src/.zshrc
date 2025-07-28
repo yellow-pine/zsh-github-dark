@@ -22,12 +22,13 @@ fi
 zmodload zsh/datetime
 
 # 🖼️ LSD Aliases (Directory Listings)
-alias ls='lsd --group-dirs=first --icon never'
-alias ll='lsd -l --group-dirs=first --icon never'
-alias la='lsd -la --group-dirs=first --icon never'
-alias l='lsd --group-dirs=first --icon never'
-alias dir='lsd --group-dirs=first --icon never'
-alias vdir='lsd -l --group-dirs=first --icon never'
+LSD_OPTS='--group-dirs=first --icon never'
+alias ls="lsd $LSD_OPTS"
+alias ll="lsd -l $LSD_OPTS"
+alias la="lsd -la $LSD_OPTS"
+alias l="lsd $LSD_OPTS"
+alias dir="lsd $LSD_OPTS"
+alias vdir="lsd -l $LSD_OPTS"
 
 # ⚡ Dynamic Prompt Setup (timing, git, errors)
 local RESET="%f%k"

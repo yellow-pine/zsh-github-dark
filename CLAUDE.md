@@ -59,7 +59,6 @@ The `.zshrc` file includes:
 - Dynamic prompt with git branch awareness, command timing, and error status
 - Color scheme optimized for GitHub Dark Terminal theme
 - `lsd` aliases for enhanced directory listings
-- Support for development tools (pyenv, nvm, poetry) when installed
 
 ## Development Guidelines
 
