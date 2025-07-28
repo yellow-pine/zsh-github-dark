@@ -29,6 +29,10 @@ rm -rf ~/.zsh-github-dark
 
 Then set Terminal.app back to "Basic" profile in preferences.
 
+## Help
+
+See [TROUBLESHOOTING.md](TROUBLESHOOTING.md) for common issues.
+
 ## License
 
 MIT © Cansin Yildiz

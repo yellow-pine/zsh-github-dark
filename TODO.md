@@ -52,7 +52,7 @@ Remaining improvements that align with our simplicity-first approach.
   - Remove alternative installation methods
   - Focus on the one-line installer only
 
-- [ ] **Add simple troubleshooting**
+- [x] **Add simple troubleshooting**
   - 3-5 most common issues only
   - Simple solutions
 
