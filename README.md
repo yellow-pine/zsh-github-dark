@@ -26,24 +26,14 @@ Here's a preview of the final setup:
 ## 🚀 Quick Start
 
 ```bash
-git clone https://github.com/yellow-pine/zsh-github-dark.git
-cd zsh-github-dark
-scripts/full-setup.sh
+curl -fsSL https://raw.githubusercontent.com/yellow-pine/zsh-github-dark/main/install.sh | bash
 ```
 
 This will:
 - Install all required packages (coreutils, lsd, zsh)
-- Set up your shell configuration
+- Set up your shell configuration  
 - Import the GitHub Dark Terminal profile
 - Configure optional developer tools (pyenv, nvm, poetry)
-
-### Homebrew Installation (Coming Soon)
-
-```bash
-brew tap yellow-pine/tap
-brew install zsh-github-dark
-zsh-github-dark-init
-```
 
 ## 🛠 Features
 
