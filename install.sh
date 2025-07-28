@@ -117,8 +117,8 @@ else
   # Check and install required dependencies
   MISSING_DEPS=()
   for cmd in coreutils lsd zsh; do
-    if ! command -v $cmd &> /dev/null && ! command -v g$cmd &> /dev/null; then
-      MISSING_DEPS+=($cmd)
+    if ! command -v "$cmd" &> /dev/null && ! command -v "g$cmd" &> /dev/null; then
+      MISSING_DEPS+=("$cmd")
     fi
   done
   
@@ -137,7 +137,7 @@ echo -e "${YELLOW}🐚 Configuring shell...${NC}"
 if [ "$DRY_RUN" = true ]; then
   echo -e "${BLUE}[DRY RUN] Would set zsh as default shell${NC}"
 else
-  CURRENT_SHELL=$(echo $SHELL)
+  CURRENT_SHELL=$SHELL
   if [[ "$CURRENT_SHELL" != */zsh ]]; then
     chsh -s /bin/zsh
     echo -e "${GREEN}✅ Default shell changed to zsh${NC}"

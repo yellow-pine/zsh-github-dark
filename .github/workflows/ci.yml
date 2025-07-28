@@ -21,10 +21,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install zsh and shfmt
+      - name: Install dependencies
         run: |
           sudo apt update
-          sudo apt install -y zsh shfmt
+          sudo apt install -y zsh shfmt shellcheck
 
       - name: Syntax Check .zshrc
         run: |
@@ -33,6 +33,14 @@ jobs:
       - name: Lint .zshrc Formatting
         run: |
           shfmt -d src/.zshrc
+
+      - name: Shellcheck install.sh
+        run: |
+          shellcheck install.sh
+
+      - name: Shellcheck pre-commit hook
+        run: |
+          shellcheck git-hooks/pre-commit
 
       - name: Check Required Files
         run: |

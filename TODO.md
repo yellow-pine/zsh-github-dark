@@ -37,7 +37,7 @@ Remaining improvements that align with our simplicity-first approach.
 
 ### Code Quality
 
-- [ ] **Add shellcheck to CI**
+- [x] **Add shellcheck to CI**
   - Basic linting for shell scripts
   - Ensure scripts are error-free
 
