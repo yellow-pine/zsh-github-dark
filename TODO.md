@@ -33,7 +33,7 @@ Potential improvements for zsh-github-dark project, organized by category.
 
 ### Performance Optimizations
 
-- [ ] **Replace bc with native zsh arithmetic**
+- [x] **Replace bc with native zsh arithmetic**
   - Use zsh's built-in floating point math instead of bc dependency
   - Example: `(( delta = EPOCHREALTIME - __TIMER_START ))`
   - Remove bc from prerequisites
@@ -77,7 +77,7 @@ Potential improvements for zsh-github-dark project, organized by category.
 ### Dependency Management
 
 - [ ] **Add dependency checker script**
-  - Check for all required tools (coreutils, lsd, bc, zsh)
+  - Check for all required tools (coreutils, lsd, zsh)
   - Offer to install missing dependencies via Homebrew
   - Version compatibility checks
 

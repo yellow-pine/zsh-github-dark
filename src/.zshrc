@@ -2,7 +2,7 @@
 # ⚡ Dev .zshrc (Optimized for macOS ARM + Homebrew Installs + GitHub Dark Terminal)
 #
 # Prerequisites (brew install):
-#   brew install coreutils lsd bc pyenv nvm poetry
+#   brew install coreutils lsd pyenv nvm poetry
 #
 # Additional Manual Setup:
 # 1. Set default shell to zsh for yourself (if not already):
@@ -90,9 +90,11 @@ build_prompt() {
   local TIME_DIFF=""
   if [[ -n $__TIMER_START && -n $__TIMER_END ]]; then
     if [[ $__TIMER_START != 0 && $__TIMER_END != 0 ]]; then
-      local delta=$(echo "$__TIMER_END - $__TIMER_START" | bc)
-      if (($(echo "$delta > 5" | bc))); then
-        local seconds=$(printf "%.2f" "$delta")
+      # Use zsh's built-in floating point arithmetic
+      local delta=$(( __TIMER_END - __TIMER_START ))
+      if (( delta > 5 )); then
+        # Format to 2 decimal places
+        local seconds=$(printf "%.2f" $delta)
         TIME_DIFF=" ${TIME_COLOR}(took ${seconds}s)"
       fi
     fi
