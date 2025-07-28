@@ -42,8 +42,16 @@ jobs:
         run: |
           shellcheck git-hooks/pre-commit
 
+      - name: Shellcheck test.sh
+        run: |
+          shellcheck test.sh
+
       - name: Check Required Files
         run: |
           test -f src/github-dark.terminal
           test -f README.md
           test -f LICENSE
+
+      - name: Run Tests
+        run: |
+          ./test.sh

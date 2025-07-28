@@ -41,7 +41,7 @@ Remaining improvements that align with our simplicity-first approach.
   - Basic linting for shell scripts
   - Ensure scripts are error-free
 
-- [ ] **Add basic tests**
+- [x] **Add basic tests**
   - Test that .zshrc syntax is valid
   - Test one-line installer works
 
