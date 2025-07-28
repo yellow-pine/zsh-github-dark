@@ -54,23 +54,50 @@ local TIME_COLOR="%F{blue}"
 
 typeset -g __TIMER_START=0
 typeset -g __TIMER_END=0
+typeset -g __GIT_BRANCH=""
+typeset -g __GIT_BRANCH_PWD=""
 
 preexec() {
   __TIMER_START=$EPOCHREALTIME
+  # Clear git cache if running a git command
+  if [[ "$1" == git* ]]; then
+    __GIT_BRANCH=""
+    __GIT_BRANCH_PWD=""
+  fi
 }
 precmd() {
   __TIMER_END=$EPOCHREALTIME
 }
 
 _git_branch() {
+  # Use cached value if we're in the same directory
+  if [[ "$PWD" == "$__GIT_BRANCH_PWD" && -n "$__GIT_BRANCH_PWD" ]]; then
+    echo "$__GIT_BRANCH"
+    return
+  fi
+  
+  # Check if we're in a git repository
+  if ! command git rev-parse --git-dir &>/dev/null; then
+    __GIT_BRANCH=""
+    __GIT_BRANCH_PWD=""
+    return
+  fi
+  
+  # Update cache
+  __GIT_BRANCH_PWD="$PWD"
+  
   local branch=$(command git rev-parse --abbrev-ref HEAD 2>/dev/null)
   if [[ -n $branch ]]; then
     if ! git diff --quiet --ignore-submodules HEAD 2>/dev/null; then
-      echo "${branch}*"
+      __GIT_BRANCH="${branch}*"
     else
-      echo "$branch"
+      __GIT_BRANCH="$branch"
     fi
+  else
+    __GIT_BRANCH=""
   fi
+  
+  echo "$__GIT_BRANCH"
 }
 
 build_prompt() {

@@ -38,7 +38,7 @@ Potential improvements for zsh-github-dark project, organized by category.
   - Example: `(( delta = EPOCHREALTIME - __TIMER_START ))`
   - Remove bc from prerequisites
 
-- [ ] **Optimize git branch detection**
+- [x] **Optimize git branch detection**
   - Cache git branch status between prompts
   - Only refresh on directory change or after git commands
   - Use git's `__git_ps1` function if available for better performance
