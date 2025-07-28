@@ -1,6 +1,12 @@
 #!/bin/bash
 # pre-commit hook to auto-format src/.zshrc with shfmt
 
+# Check if shfmt is installed
+if ! command -v shfmt &> /dev/null; then
+  echo "❌ shfmt not found. Install with: brew install shfmt"
+  exit 1
+fi
+
 echo "🔧 Running shfmt on src/.zshrc..."
 shfmt -w -i 2 src/.zshrc
 

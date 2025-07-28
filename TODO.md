@@ -16,7 +16,7 @@ Potential improvements for zsh-github-dark project, organized by category.
   fi
   ```
 
-- [ ] **Add shfmt validation in pre-commit hook**
+- [x] **Add shfmt validation in pre-commit hook**
   - Check if `shfmt` is installed before attempting to format
   - Provide installation instructions if missing
   ```bash
