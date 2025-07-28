@@ -64,17 +64,17 @@ _git_branch() {
     echo "$__GIT_BRANCH"
     return
   fi
-  
+
   # Check if we're in a git repository
   if ! command git rev-parse --git-dir &>/dev/null; then
     __GIT_BRANCH=""
     __GIT_BRANCH_PWD=""
     return
   fi
-  
+
   # Update cache
   __GIT_BRANCH_PWD="$PWD"
-  
+
   local branch=$(command git rev-parse --abbrev-ref HEAD 2>/dev/null)
   if [[ -n $branch ]]; then
     if ! git diff --quiet --ignore-submodules HEAD 2>/dev/null; then
@@ -85,7 +85,7 @@ _git_branch() {
   else
     __GIT_BRANCH=""
   fi
-  
+
   echo "$__GIT_BRANCH"
 }
 
