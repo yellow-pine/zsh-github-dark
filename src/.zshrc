@@ -19,6 +19,9 @@
 # 5. Poetry installed via Homebrew; no virtualenv setup needed except optional:
 #      export POETRY_VIRTUALENVS_IN_PROJECT=true
 #
+# 6. For faster startup on trusted systems, set:
+#      export ZSH_DISABLE_COMPFIX=true
+#
 # This .zshrc includes:
 #  - Dynamic prompt (timing, git branch, dirty state, error highlighting)
 #  - lsd colorized directory listings
@@ -177,4 +180,11 @@ fi
 
 # 🧹 Final Touch
 autoload -Uz compinit
-compinit
+
+# Speed up startup by skipping security checks on trusted systems
+# Use -C flag if ZSH_DISABLE_COMPFIX is set (indicating a trusted environment)
+if [[ -n "$ZSH_DISABLE_COMPFIX" ]]; then
+  compinit -C
+else
+  compinit
+fi

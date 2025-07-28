@@ -45,7 +45,7 @@ Potential improvements for zsh-github-dark project, organized by category.
   - Only refresh on directory change or after git commands
   - Use git's `__git_ps1` function if available for better performance
 
-- [ ] **Speed up zsh startup with compinit -C**
+- [x] **Speed up zsh startup with compinit -C**
   - Add `-C` flag to skip security checks on trusted systems
   - Document security implications in comments
   - Make it configurable via environment variable
