@@ -16,19 +16,23 @@ INSTALL_DIR="$HOME/.zsh-github-dark"
 DRY_RUN=false
 
 # Parse command line arguments
+UNINSTALL=false
 while [[ "$#" -gt 0 ]]; do
   case $1 in
     --dry-run) DRY_RUN=true ;;
+    --uninstall) UNINSTALL=true ;;
     -h|--help)
       echo "zsh-github-dark installer"
       echo ""
       echo "Usage:"
       echo "  curl -fsSL https://raw.githubusercontent.com/yellow-pine/zsh-github-dark/main/install.sh | bash"
       echo "  curl -fsSL https://raw.githubusercontent.com/yellow-pine/zsh-github-dark/main/install.sh | bash -s -- --dry-run"
+      echo "  curl -fsSL https://raw.githubusercontent.com/yellow-pine/zsh-github-dark/main/install.sh | bash -s -- --uninstall"
       echo ""
       echo "Options:"
-      echo "  --dry-run    Preview changes without making them"
-      echo "  -h, --help   Show this help message"
+      echo "  --dry-run     Preview changes without making them"
+      echo "  --uninstall   Remove zsh-github-dark"
+      echo "  -h, --help    Show this help message"
       exit 0
       ;;
     *)
@@ -58,6 +62,49 @@ write_file() {
     echo "$content" > "$file"
   fi
 }
+
+# Handle uninstall
+if [ "$UNINSTALL" = true ]; then
+  echo -e "${BLUE}╔════════════════════════════════════╗${NC}"
+  echo -e "${BLUE}║   zsh-github-dark Uninstaller      ║${NC}"
+  echo -e "${BLUE}╚════════════════════════════════════╝${NC}"
+  echo ""
+  
+  if [ "$DRY_RUN" = true ]; then
+    echo -e "${YELLOW}Running in DRY RUN mode - no changes will be made${NC}"
+    echo ""
+  fi
+  
+  echo -e "${YELLOW}🗑  Removing zsh-github-dark...${NC}"
+  
+  # Remove .zshrc if it's ours
+  if [ -f "$HOME/.zshrc" ] && grep -q "zsh-github-dark" "$HOME/.zshrc" 2>/dev/null; then
+    run_cmd rm "$HOME/.zshrc"
+    echo -e "${GREEN}✅ Removed .zshrc${NC}"
+  fi
+  
+  # Remove installation directory
+  if [ -d "$INSTALL_DIR" ]; then
+    run_cmd rm -rf "$INSTALL_DIR"
+    echo -e "${GREEN}✅ Removed installation directory${NC}"
+  fi
+  
+  # Note about Terminal profile
+  echo ""
+  echo -e "${YELLOW}Note: To remove the Terminal profile:${NC}"
+  echo "1. Open Terminal → Settings (⌘,)"
+  echo "2. Select 'GitHub Dark' profile"
+  echo "3. Click the minus (-) button"
+  echo "4. Set 'Basic' as default"
+  
+  echo ""
+  if [ "$DRY_RUN" = true ]; then
+    echo -e "${YELLOW}Dry run complete. No changes were made.${NC}"
+  else
+    echo -e "${GREEN}✅ Uninstall complete!${NC}"
+  fi
+  exit 0
+fi
 
 echo -e "${BLUE}╔════════════════════════════════════╗${NC}"
 echo -e "${BLUE}║    zsh-github-dark Installer       ║${NC}"

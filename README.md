@@ -23,11 +23,8 @@ curl -fsSL https://raw.githubusercontent.com/yellow-pine/zsh-github-dark/main/in
 ## Uninstall
 
 ```bash
-rm ~/.zshrc
-rm -rf ~/.zsh-github-dark
+curl -fsSL https://raw.githubusercontent.com/yellow-pine/zsh-github-dark/main/install.sh | bash -s -- --uninstall
 ```
-
-Then set Terminal.app back to "Basic" profile in preferences.
 
 ## Help
 

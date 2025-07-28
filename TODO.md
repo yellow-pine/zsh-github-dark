@@ -56,7 +56,7 @@ Remaining improvements that align with our simplicity-first approach.
   - 3-5 most common issues only
   - Simple solutions
 
-- [ ] **Create uninstall script**
+- [x] **Create uninstall script**
   - One command to remove everything
   - Restore original settings
 

@@ -59,6 +59,9 @@ run_test "No scripts directory" "! test -d scripts"
 # Test 8: Check install.sh dry run
 run_test "install.sh dry run" "bash install.sh --dry-run | grep -q 'DRY RUN'"
 
+# Test 9: Check uninstall dry run
+run_test "uninstall dry run" "bash install.sh --uninstall --dry-run | grep -q 'Uninstaller'"
+
 # Summary
 echo ""
 echo "================================"
