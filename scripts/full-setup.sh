@@ -30,33 +30,40 @@ confirm() {
   [[ $REPLY =~ ^[Yy]$ ]]
 }
 
-# 1. Check and install required dependencies
+# 1. Run dependency checker
 echo -e "${YELLOW}📦 Checking dependencies...${NC}"
-MISSING_DEPS=()
-
-if ! command_exists brew; then
-  echo -e "${RED}❌ Homebrew not found. Please install it first:${NC}"
-  echo "  /bin/bash -c \"\$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\""
-  exit 1
-fi
-
-# Check required tools
-for cmd in coreutils lsd zsh; do
-  if ! command_exists $cmd; then
-    MISSING_DEPS+=($cmd)
-  fi
-done
-
-if [ ${#MISSING_DEPS[@]} -ne 0 ]; then
-  echo -e "${YELLOW}Missing dependencies: ${MISSING_DEPS[*]}${NC}"
-  if confirm "Install missing dependencies with Homebrew?"; then
-    brew install "${MISSING_DEPS[@]}"
-  else
-    echo -e "${RED}❌ Cannot proceed without required dependencies${NC}"
+if [ -f "scripts/check-dependencies.sh" ]; then
+  # Running from local installation
+  scripts/check-dependencies.sh
+elif [ -f "$(dirname "$0")/check-dependencies.sh" ]; then
+  # Running from scripts directory
+  "$(dirname "$0")/check-dependencies.sh"
+else
+  # Fallback to basic check
+  if ! command_exists brew; then
+    echo -e "${RED}❌ Homebrew not found. Please install it first:${NC}"
+    echo "  /bin/bash -c \"\$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\""
     exit 1
   fi
-else
-  echo -e "${GREEN}✅ All required dependencies installed${NC}"
+  
+  MISSING_DEPS=()
+  for cmd in coreutils lsd zsh; do
+    if ! command_exists $cmd; then
+      MISSING_DEPS+=($cmd)
+    fi
+  done
+  
+  if [ ${#MISSING_DEPS[@]} -ne 0 ]; then
+    echo -e "${YELLOW}Missing dependencies: ${MISSING_DEPS[*]}${NC}"
+    if confirm "Install missing dependencies with Homebrew?"; then
+      brew install "${MISSING_DEPS[@]}"
+    else
+      echo -e "${RED}❌ Cannot proceed without required dependencies${NC}"
+      exit 1
+    fi
+  else
+    echo -e "${GREEN}✅ All required dependencies installed${NC}"
+  fi
 fi
 
 # 2. Check current shell
@@ -131,30 +138,7 @@ if [ -d ".git" ] && confirm "Install git pre-commit hooks?"; then
   scripts/setup.sh
 fi
 
-# 8. Optional tools
-echo ""
-echo -e "${YELLOW}📦 Optional tools setup...${NC}"
-OPTIONAL_TOOLS=()
-
-if ! command_exists pyenv; then
-  OPTIONAL_TOOLS+=("pyenv - Python version management")
-fi
-if ! command_exists nvm; then
-  OPTIONAL_TOOLS+=("nvm - Node.js version management")
-fi
-if ! command_exists poetry; then
-  OPTIONAL_TOOLS+=("poetry - Python dependency management")
-fi
-
-if [ ${#OPTIONAL_TOOLS[@]} -ne 0 ]; then
-  echo "The following optional tools are not installed:"
-  printf '%s\n' "${OPTIONAL_TOOLS[@]}"
-  if confirm "Install optional developer tools?"; then
-    brew install pyenv nvm poetry
-  fi
-else
-  echo -e "${GREEN}✅ All optional tools already installed${NC}"
-fi
+# 8. Optional tools are handled by dependency checker
 
 # 9. Performance optimization
 echo ""

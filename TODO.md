@@ -78,7 +78,7 @@ Potential improvements for zsh-github-dark project, organized by category.
 
 ### Dependency Management
 
-- [ ] **Add dependency checker script**
+- [x] **Add dependency checker script**
   - Check for all required tools (coreutils, lsd, zsh)
   - Offer to install missing dependencies via Homebrew
   - Version compatibility checks
