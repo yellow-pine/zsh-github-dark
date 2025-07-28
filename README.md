@@ -15,7 +15,7 @@ A minimal zsh and Terminal setup aligned with GitHub Dark themes — reusing an
 optimized Terminal profile, fine-tuning prompt colors, and keeping everything
 clean and fast.
 
-Ready for developers working with TypeScript, Python, and modern CLI workflows.
+Ready for modern development workflows.
 
 ## 📋 Requirements
 
@@ -38,10 +38,9 @@ curl -fsSL https://raw.githubusercontent.com/yellow-pine/zsh-github-dark/main/in
 ```
 
 This will:
-- Install all required packages (coreutils, lsd, zsh)
+- Install required packages (coreutils, lsd)
 - Set up your shell configuration  
 - Import the GitHub Dark Terminal profile
-- Configure optional developer tools (pyenv, nvm, poetry)
 
 ## 🛠 Features
 

@@ -37,15 +37,6 @@ These will be automatically installed during setup:
 | lsd | Modern ls replacement with icons and colors | 0.23+ |
 | zsh | Z shell (if not already present) | 5.0+ |
 
-### Optional Dependencies
-These are recommended for developers:
-
-| Package | Purpose | Version |
-|---------|---------|---------|
-| pyenv | Python version management | 2.0+ |
-| nvm | Node.js version management | 0.39+ |
-| poetry | Python dependency management | 1.0+ |
-| shfmt | Shell script formatter | 3.0+ |
 
 ## Terminal Requirements
 

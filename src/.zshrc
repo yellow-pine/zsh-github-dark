@@ -2,28 +2,16 @@
 # ⚡ Dev .zshrc (Optimized for macOS ARM + Homebrew Installs + GitHub Dark Terminal)
 #
 # Prerequisites (brew install):
-#   brew install coreutils lsd pyenv nvm poetry
+#   brew install coreutils lsd
 #
 # Additional Manual Setup:
 # 1. Set default shell to zsh for yourself (if not already):
 #      chsh -s /bin/zsh
 #
-# 2. Set zsh as root's shell (to fix sudo su - being bash):
-#      sudo chsh -s /bin/zsh root
-#
-# 3. Create NVM working directory (if missing):
-#      mkdir -p ~/.nvm
-#
-# 4. Homebrew pyenv installs to ~/.pyenv; no further manual action needed.
-#
-# 5. Poetry installed via Homebrew; no virtualenv setup needed except optional:
-#      export POETRY_VIRTUALENVS_IN_PROJECT=true
-#
 # This .zshrc includes:
 #  - Dynamic prompt (timing, git branch, dirty state, error highlighting)
 #  - lsd colorized directory listings
 #  - Simplified LS_COLORS tuned for dev work (python, ts, html, config, archives, media)
-#  - Full pyenv, nvm, and poetry integration
 #  - Colors tuned for GitHub Dark Terminal Profile
 # ----------------------------------------
 
@@ -158,22 +146,6 @@ cd=38;5;124:
 *.json=38;5;178:*.yaml=38;5;178:*.yml=38;5;178:*.toml=38;5;178:*.ini=38;5;178:*.md=38;5;184:*.txt=38;5;253:*.pdf=38;5;141:*.po=38;5;180:*.lock=38;5;242:
 '
 export LS_COLORS
-
-# 🐍 Python, Node, Poetry Integration (Homebrew paths)
-if command -v pyenv 1>/dev/null 2>&1; then
-  export PYENV_ROOT="$HOME/.pyenv"
-  export PATH="$PYENV_ROOT/bin:$PATH"
-  eval "$(pyenv init --path)"
-  eval "$(pyenv init -)"
-fi
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
-[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
-
-if command -v poetry 1>/dev/null 2>&1; then
-  export POETRY_VIRTUALENVS_IN_PROJECT=true
-fi
 
 # 🧹 Final Touch
 autoload -Uz compinit

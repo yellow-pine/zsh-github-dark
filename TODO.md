@@ -28,7 +28,7 @@ Remaining improvements that align with our simplicity-first approach.
   - Remove iTerm2, Kitty, Alacritty themes
   - Remove terminal theme installer
 
-- [ ] **Simplify dependency management**
+- [x] **Simplify dependency management**
   - Remove optional dependencies (pyenv, nvm, poetry)
   - Keep only essential: coreutils, lsd, zsh
   - Remove dependency checker script
