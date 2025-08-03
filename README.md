@@ -38,6 +38,7 @@ This project includes comprehensive test coverage for all user-facing functional
 ```
 
 **42 comprehensive tests** covering:
+
 - One-line installer (help, dry-run, uninstall, error handling)
 - Shell configuration (aliases, git integration, prompt, key bindings)
 - Terminal profile (XML validation, color definitions)

@@ -1,4 +1,4 @@
-# 🛠 Contributing to zsh-github-dark
+# Contributing to zsh-github-dark
 
 Thanks for considering contributing! We keep things simple and clean —
 here’s how you can help:
@@ -42,12 +42,14 @@ Install it via Homebrew:
 brew install shfmt
 ```
 
-We use `shfmt` to automatically format `src/.zshrc` for consistency.
+### Pre-commit Hook (Optional)
 
-> **Note:** Syntax checking (`zsh -n`) and formatting validation (`shfmt -d`)
-> are handled automatically by GitHub Actions CI.
+Automatically format code before commits:
 
----
+```bash
+cp git-hooks/pre-commit .git/hooks/
+chmod +x .git/hooks/pre-commit
+```
 
 ### 🔹 Pre-Commit Hook Setup
 
@@ -80,10 +82,4 @@ These extensions are optional but highly recommended.
 
 ## 🛡 License
 
-By contributing, you agree that your code will be licensed under the
-[MIT License](LICENSE).
-
----
-
-Thank you for helping make this project better! Built with 💛 by
-[Yellow Pine](https://github.com/yellow-pine).
+By contributing, you agree your code will be licensed under the [MIT License](LICENSE).
