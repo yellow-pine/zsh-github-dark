@@ -164,11 +164,21 @@ if [ "$DRY_RUN" = true ]; then
 else
   # Check and install required dependencies
   MISSING_DEPS=()
-  for cmd in coreutils lsd zsh; do
-    if ! command -v "$cmd" &> /dev/null && ! command -v "g$cmd" &> /dev/null; then
-      MISSING_DEPS+=("$cmd")
-    fi
-  done
+  
+  # Check for coreutils (look for realpath as indicator)
+  if ! command -v realpath &> /dev/null && ! command -v grealpath &> /dev/null; then
+    MISSING_DEPS+=("coreutils")
+  fi
+  
+  # Check for lsd
+  if ! command -v lsd &> /dev/null; then
+    MISSING_DEPS+=("lsd")
+  fi
+  
+  # Check for zsh
+  if ! command -v zsh &> /dev/null; then
+    MISSING_DEPS+=("zsh")
+  fi
   
   if [ ${#MISSING_DEPS[@]} -ne 0 ]; then
     echo "Installing: ${MISSING_DEPS[*]}"
