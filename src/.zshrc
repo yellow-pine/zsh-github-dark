@@ -28,10 +28,19 @@
 # ----------------------------------------
 
 # 🛠️ Core Setup
+export PATH="/opt/homebrew/bin:$PATH"
 if [ -d "/opt/homebrew/opt/coreutils/libexec/gnubin" ]; then
   export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
 fi
 zmodload zsh/datetime
+
+# 📁 Better history
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_SPACE
+setopt SHARE_HISTORY
 
 # 🖼️ LSD Aliases (Directory Listings)
 alias ls='lsd --group-dirs=first --icon never'
@@ -54,23 +63,50 @@ local TIME_COLOR="%F{blue}"
 
 typeset -g __TIMER_START=0
 typeset -g __TIMER_END=0
+typeset -g __GIT_BRANCH=""
+typeset -g __GIT_BRANCH_PWD=""
 
 preexec() {
   __TIMER_START=$EPOCHREALTIME
+  # Clear git cache if running a git command
+  if [[ "$1" == git* ]]; then
+    __GIT_BRANCH=""
+    __GIT_BRANCH_PWD=""
+  fi
 }
 precmd() {
   __TIMER_END=$EPOCHREALTIME
 }
 
 _git_branch() {
+  # Use cached value if we're in the same directory
+  if [[ "$PWD" == "$__GIT_BRANCH_PWD" && -n "$__GIT_BRANCH_PWD" ]]; then
+    echo "$__GIT_BRANCH"
+    return
+  fi
+
+  # Check if we're in a git repository
+  if ! command git rev-parse --git-dir &>/dev/null; then
+    __GIT_BRANCH=""
+    __GIT_BRANCH_PWD=""
+    return
+  fi
+
+  # Update cache
+  __GIT_BRANCH_PWD="$PWD"
+
   local branch=$(command git rev-parse --abbrev-ref HEAD 2>/dev/null)
   if [[ -n $branch ]]; then
     if ! git diff --quiet --ignore-submodules HEAD 2>/dev/null; then
-      echo "${branch}*"
+      __GIT_BRANCH="${branch}*"
     else
-      echo "$branch"
+      __GIT_BRANCH="$branch"
     fi
+  else
+    __GIT_BRANCH=""
   fi
+
+  echo "$__GIT_BRANCH"
 }
 
 build_prompt() {
@@ -90,9 +126,11 @@ build_prompt() {
   local TIME_DIFF=""
   if [[ -n $__TIMER_START && -n $__TIMER_END ]]; then
     if [[ $__TIMER_START != 0 && $__TIMER_END != 0 ]]; then
+      # Use bc for reliable floating point arithmetic
       local delta=$(echo "$__TIMER_END - $__TIMER_START" | bc)
       if (($(echo "$delta > 5" | bc))); then
-        local seconds=$(printf "%.2f" "$delta")
+        # Format to 2 decimal places
+        local seconds=$(printf "%.2f" $delta)
         TIME_DIFF=" ${TIME_COLOR}(took ${seconds}s)"
       fi
     fi
@@ -103,7 +141,8 @@ build_prompt() {
     BRANCH=" ${BRANCH_COLOR}[$BRANCH]"
   fi
 
-  PROMPT="${USER_COLOR}%n${AT_COLOR}@${HOST_COLOR}%m ${DIR_COLOR}%~${BRANCH}${TIME_DIFF}${PROMPT_COLOR} %# ${RESET}"
+  PROMPT="${USER_COLOR}%n${AT_COLOR}@${HOST_COLOR}%m ${DIR_COLOR}%~${BRANCH}${TIME_DIFF}
+${PROMPT_COLOR}%# ${RESET}"
 }
 
 autoload -Uz add-zsh-hook
@@ -146,6 +185,18 @@ if command -v poetry 1>/dev/null 2>&1; then
   export POETRY_VIRTUALENVS_IN_PROJECT=true
 fi
 
+# ⌨️ Key bindings
+bindkey '^[[A' history-search-backward # Up arrow
+bindkey '^[[B' history-search-forward  # Down arrow
+bindkey '^R' history-incremental-search-backward
+
 # 🧹 Final Touch
 autoload -Uz compinit
-compinit
+
+# Speed up startup by skipping security checks on trusted systems
+# Use -C flag if ZSH_DISABLE_COMPFIX is set (indicating a trusted environment)
+if [[ -n "$ZSH_DISABLE_COMPFIX" ]]; then
+  compinit -C
+else
+  compinit
+fi

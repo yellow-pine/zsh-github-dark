@@ -17,8 +17,11 @@ here’s how you can help:
 
 ## 📦 Before Submitting a PR
 
-- Test your changes locally.
-- Make sure prompt rendering and terminal colors remain clean.
+- Run the test suite: `./run-tests.sh` (42 comprehensive tests)
+- Test your changes locally by sourcing the `.zshrc`
+- Make sure prompt rendering and terminal colors remain clean
+- Ensure all user-facing functionality works as expected
+- Tests are compatible with both macOS and Ubuntu CI environments
 
 ---
 
@@ -46,18 +49,16 @@ We use `shfmt` to automatically format `src/.zshrc` for consistency.
 
 ---
 
-### 🔹 Optional: Pre-Commit Hook for Auto-Formatting
+### 🔹 Pre-Commit Hook Setup
 
-To automatically format `src/.zshrc` before every commit, run the provided
-setup script:
+To enable automatic formatting of `src/.zshrc` before every commit, manually copy the pre-commit hook:
 
 ```bash
-scripts/setup.sh
+cp git-hooks/pre-commit .git/hooks/
+chmod +x .git/hooks/pre-commit
 ```
 
-This will install the pre-commit hook automatically. It ensures that all
-committed changes stay consistent with our formatting standards without
-manual intervention.
+This ensures consistent formatting standards.
 
 ---
 

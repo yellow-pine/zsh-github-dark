@@ -9,3 +9,6 @@
 # Backup files
 *~
 *.bak
+
+# MCP configuration (may contain tokens)
+.mcp.json

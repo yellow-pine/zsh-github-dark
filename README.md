@@ -1,89 +1,55 @@
 # zsh-github-dark
 
-[![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![CI](https://github.com/yellow-pine/zsh-github-dark/actions/workflows/ci.yml/badge.svg)](https://github.com/yellow-pine/zsh-github-dark/actions/workflows/ci.yml)
-[![shell](https://img.shields.io/badge/shell-zsh-green.svg)](https://www.zsh.org/)
-[![shfmt](https://img.shields.io/badge/code%20style-shfmt-1abc9c.svg)](https://github.com/mvdan/sh)
-[![💛 Yellow Pine](https://img.shields.io/badge/%F0%9F%92%9B%20Yellow%20Pine-gray.svg)](https://github.com/yellow-pine)
+A comprehensive zsh configuration with GitHub Dark terminal theme for macOS developers.
 
-Minimalistic macOS zsh and Terminal configuration optimized for GitHub Dark themes.
-Designed for clarity, speed, and a visually cohesive development environment.
-
-## 🎯 Why zsh-github-dark?
-
-A minimal zsh and Terminal setup aligned with GitHub Dark themes — reusing an
-optimized Terminal profile, fine-tuning prompt colors, and keeping everything
-clean and fast.
-
-Ready for developers working with TypeScript, Python, and modern CLI workflows.
-
-## 🎨 Terminal Preview
-
-Here's a preview of the final setup:
-
-![Terminal Preview](assets/terminal-preview.png)
-
-## 🚀 Quick Start
-
-### 1. Install Required Packages
+## Install
 
 ```bash
-brew install coreutils lsd zsh
+curl -fsSL https://raw.githubusercontent.com/yellow-pine/zsh-github-dark/main/install.sh | bash
 ```
 
-### 2. (Optional) Install Developer Tools
+## What You Get
 
-Recommended if you work with Python, Node, or Poetry:
+- **Beautiful GitHub Dark terminal colors** - Custom Terminal profile optimized for dark themes
+- **Git-aware prompt** - Shows branch name, dirty state, and command timing
+- **Enhanced directory listings** - `lsd` with colors and better formatting (ls, ll, la aliases)
+- **Developer-friendly history** - 10,000 command history with deduplication and sharing
+- **Tool integrations** - Safe support for pyenv, nvm, and poetry when installed
+- **Optimized for GitHub Dark** - Colors and prompt designed for the GitHub Dark aesthetic
+
+## Requirements
+
+- macOS 10.15+
+- Homebrew
+- Terminal.app
+
+## Uninstall
 
 ```bash
-brew install pyenv nvm poetry
+curl -fsSL https://raw.githubusercontent.com/yellow-pine/zsh-github-dark/main/install.sh | bash -s -- --uninstall
 ```
 
-### 3. Clone the Repository and Set Up
+## Testing
+
+This project includes comprehensive test coverage for all user-facing functionality:
 
 ```bash
-git clone https://github.com/yellow-pine/zsh-github-dark.git
-cd zsh-github-dark
-cp src/.zshrc ~/.zshrc
-exec zsh
+./run-tests.sh
 ```
 
-### 4. Import the Terminal Profile
+**42 comprehensive tests** covering:
+- One-line installer (help, dry-run, uninstall, error handling)
+- Shell configuration (aliases, git integration, prompt, key bindings)
+- Terminal profile (XML validation, color definitions)
 
-Terminal profile: Double-click `src/github-dark.terminal` to import it, then set
-it as your default under **Terminal Settings → Profiles → Default**.
+**Platform compatibility**: Tests run on both macOS (primary target) and Ubuntu (CI environment), with platform-appropriate validation methods.
 
-✅ You are now fully set up!
+See [CONTRIBUTING.md](CONTRIBUTING.md) for development setup.
 
-## 🛠 Features
+## Help
 
-- GitHub Dark-optimized zsh prompt
-- Git branch awareness, last command timing, and error status
-- Human-readable `lsd` output with matching color theme
-- No plugins, no bloated frameworks — pure native zsh
+See [TROUBLESHOOTING.md](TROUBLESHOOTING.md) for common issues.
 
-## 🎨 Terminal Theme Details
+## License
 
-- Based on [GitHub Dark](https://terminalcolors.com/themes/github/dark/)
-- Minor Yellow Pine customizations:
-  - Font size set to 12
-  - Background opacity set to 85%
-  - Cursor color changed to match Bold Text instead of orange
-- Provided file: `src/github-dark.terminal`
-
-## 🛠 Troubleshooting & Contributions
-
-If anything doesn't work as expected, please check:
-
-- [TROUBLESHOOTING.md](TROUBLESHOOTING.md) for setup issues
-- [CONTRIBUTING.md](CONTRIBUTING.md) for developer guidelines
-
-## 📫 Contact
-
-For feedback, ideas, or contributions:
-**<hello@yellowpine.com>**
-
-## ⚡ License
-
-This project is licensed under the [MIT License](LICENSE).
-Authored and maintained by **Cansin Yildiz**.
+MIT © Cansin Yildiz

@@ -1,78 +1,31 @@
-# 🛠 Troubleshooting
+# Troubleshooting
 
-Helpful tips if something doesn't work as expected.
+## Installation fails
 
-## 🔵 Shell does not change after installation
+**Problem**: `curl: command not found`  
+**Fix**: Install Xcode Command Line Tools: `xcode-select --install`
 
-Check your current shell:
+**Problem**: `brew: command not found`  
+**Fix**: Install Homebrew from https://brew.sh
 
-```bash
-echo $SHELL
-```
+## Prompt looks wrong
 
-If it is not `/bin/zsh`, switch to zsh:
+**Problem**: No colors or broken characters  
+**Fix**: Set Terminal → Preferences → Profiles → "GitHub Dark" as default
 
-```bash
-chsh -s /bin/zsh
-exec zsh
-```
+## Command not found: lsd
 
-## 🔵 `ls` still looks boring / missing colors
+**Fix**: Run `brew install lsd`
 
-This setup uses [`lsd`](https://github.com/lsd-rs/lsd) instead of the system `ls`.
+## Still having issues?
 
-Install it if missing:
+1. Start fresh:
+   ```bash
+   rm ~/.zshrc
+   rm -rf ~/.zsh-github-dark
+   ```
 
-```bash
-brew install lsd
-```
-
-## 🔵 `brew` command not found
-
-Install Homebrew:
-
-```bash
-/bin/bash -c "$(curl -fsSL <https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh>)"
-```
-
-Then re-run the install steps.
-
-## 🔵 Terminal colors look wrong or washed out
-
-- Import the `github-dark.terminal` profile into Terminal ➔ Settings ➔ Profiles
-- Set it as your **default profile**
-- Enable **"Use colors from profile"** in Terminal Settings
-
-Then restart Terminal.
-
-## 🔵 Root shell (`sudo su -`) does not have colors
-
-By default, macOS root uses bash.
-
-Fix it by:
-
-Linking your `.zshrc`:
-
-```bash
-sudo ln -sf /Users/$(whoami)/.zshrc /var/root/.zshrc
-```
-
-Changing root's shell:
-
-```bash
-sudo chsh -s /bin/zsh root
-```
-
-Now `sudo su -` will match your regular environment.
-
-## 🧹 Still stuck?
-
-- Reload zsh manually:
-
-```bash
-exec zsh
-```
-
-- Or restart Terminal completely.
-
-If the issue persists, contact **<hello@yellowpine.com>**.
+2. Reinstall:
+   ```bash
+   curl -fsSL https://raw.githubusercontent.com/yellow-pine/zsh-github-dark/main/install.sh | bash
+   ```
