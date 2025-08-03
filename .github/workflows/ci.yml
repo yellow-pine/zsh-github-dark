@@ -42,9 +42,9 @@ jobs:
         run: |
           shellcheck git-hooks/pre-commit
 
-      - name: Shellcheck test.sh
+      - name: Shellcheck run-tests.sh
         run: |
-          shellcheck test.sh
+          shellcheck run-tests.sh
 
       - name: Check Required Files
         run: |
@@ -54,4 +54,4 @@ jobs:
 
       - name: Run Tests
         run: |
-          ./test.sh
+          ./run-tests.sh
