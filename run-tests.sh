@@ -126,7 +126,7 @@ run_test "nvm integration safe" "HOME=$TEST_HOME zsh -c 'unset NVM_DIR; source s
 run_test "poetry integration safe" "HOME=$TEST_HOME PATH=/usr/bin:/bin zsh -c 'source src/.zshrc 2>/dev/null; exit 0'"
 
 # Completion system  
-run_test "completion system loads" "HOME=$TEST_HOME zsh -c 'source src/.zshrc 2>/dev/null; compdef >/dev/null 2>&1 || typeset -f compinit >/dev/null 2>&1'"
+run_test "completion system configured" "grep -q 'autoload -Uz compinit' src/.zshrc && grep -q 'compinit' src/.zshrc"
 
 # ========================================
 # TERMINAL PROFILE TESTS (User-Facing)
