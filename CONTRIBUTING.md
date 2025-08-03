@@ -1,18 +1,42 @@
 # Contributing to zsh-github-dark
 
-Thanks for your interest in contributing! This project follows a simplicity-first approach.
+Thanks for considering contributing! We keep things simple and clean —
+here’s how you can help:
 
-## How to Contribute
+## ✨ How to Contribute
 
-1. **Report issues** - Found a bug or have an idea? [Open an issue](https://github.com/yellow-pine/zsh-github-dark/issues)
-2. **Submit pull requests** - Fork the repo and submit focused changes
-3. **Keep it minimal** - This project values simplicity over features
+- Open an issue if you find a bug, improvement idea, or enhancement.
+- Fork the repo and submit a pull request (PR).
+- Keep changes small and focused.
 
-## Development Setup
+## 🎯 Code Style
 
-### Required Tools
+- Keep `.zshrc` readable and minimal — no unnecessary plugin frameworks.
+- Follow existing file organization.
+- No external dependencies unless absolutely necessary.
 
-Install the formatting tool:
+## 📦 Before Submitting a PR
+
+- Run the test suite: `./run-tests.sh` (42 comprehensive tests)
+- Test your changes locally by sourcing the `.zshrc`
+- Make sure prompt rendering and terminal colors remain clean
+- Ensure all user-facing functionality works as expected
+- Tests are compatible with both macOS and Ubuntu CI environments
+
+---
+
+## 🛠 Developer Setup
+
+To contribute cleanly to this project, we recommend setting up a local
+environment with basic tooling.
+
+### 🔹 Required Developer Tools
+
+Please ensure you have the following installed locally:
+
+- [`shfmt`](https://github.com/mvdan/sh) — for shell script formatting
+
+Install it via Homebrew:
 
 ```bash
 brew install shfmt
@@ -27,52 +51,35 @@ cp git-hooks/pre-commit .git/hooks/
 chmod +x .git/hooks/pre-commit
 ```
 
-### Testing Changes
+### 🔹 Pre-Commit Hook Setup
 
-Before submitting a PR:
+To enable automatic formatting of `src/.zshrc` before every commit, manually copy the pre-commit hook:
 
 ```bash
-# Run full test suite (42 tests)
-./run-tests.sh
-
-# Check syntax manually
-zsh -n src/.zshrc
-
-# Verify formatting
-shfmt -d src/.zshrc
-
-# Test locally
-source src/.zshrc
+cp git-hooks/pre-commit .git/hooks/
+chmod +x .git/hooks/pre-commit
 ```
 
-## Code Guidelines
+This ensures consistent formatting standards.
 
-- **Keep `.zshrc` minimal** - No unnecessary frameworks or complexity
-- **Follow existing patterns** - Match the current code style
-- **No new dependencies** - Unless absolutely essential
-- **Test thoroughly** - Ensure colors and prompt work correctly
+---
 
-## Development Philosophy
+## 🧩 Recommended VSCode Extensions
 
-This project intentionally avoids:
-- Plugin systems or frameworks
-- Configuration files or customization options  
-- Multiple terminal emulator support
-- Advanced features that add complexity
+To ensure a smooth development experience, we recommend installing the
+suggested extensions when prompted by VSCode or Cursor:
 
-We focus on providing one excellent default experience.
+- **Shell Format** (`foxundermoon.shell-format`) — Formats `.zshrc` cleanly
+  using `shfmt`
+- **EditorConfig** (`editorconfig.editorconfig`) — Ensures consistent
+  formatting rules across different editors
+- **Markdownlint** (`davidanson.vscode-markdownlint`) — Helps maintain clean
+  and consistent Markdown style
 
-## Recommended Editor Extensions
+These extensions are optional but highly recommended.
 
-For VSCode/Cursor:
-- Shell Format (foxundermoon.shell-format)
-- EditorConfig (editorconfig.editorconfig)
-- Markdownlint (davidanson.vscode-markdownlint)
+---
 
-## Project Commands
-
-See [CLAUDE.md](CLAUDE.md) for the complete list of development commands and project documentation.
-
-## License
+## 🛡 License
 
 By contributing, you agree your code will be licensed under the [MIT License](LICENSE).
