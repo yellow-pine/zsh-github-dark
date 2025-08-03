@@ -37,10 +37,12 @@ This project includes comprehensive test coverage for all user-facing functional
 ./run-tests.sh
 ```
 
-Tests cover:
+**42 comprehensive tests** covering:
 - One-line installer (help, dry-run, uninstall, error handling)
 - Shell configuration (aliases, git integration, prompt, key bindings)
 - Terminal profile (XML validation, color definitions)
+
+**Platform compatibility**: Tests run on both macOS (primary target) and Ubuntu (CI environment), with platform-appropriate validation methods.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for development setup.
 

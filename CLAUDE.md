@@ -120,6 +120,10 @@ bash -n install.sh         # Check installer syntax
 - `src/.zshrc` - Shell configuration (aliases, git integration, prompt, key bindings)  
 - `src/github-dark.terminal` - Terminal profile (XML validation, color definitions)
 
+**Platform Support**: Tests are compatible with both macOS (primary target) and Ubuntu (CI). Platform-specific behavior is tested appropriately:
+- macOS: Full installer validation, plutil for plist validation
+- Ubuntu: Installer rejection behavior, xmllint or file existence checks
+
 **Not Tested**: Internal development tools like pre-commit hooks, CI scripts, or documentation files.
 
 Before submitting changes:
