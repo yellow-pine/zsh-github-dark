@@ -31,7 +31,7 @@ curl -fsSL https://raw.githubusercontent.com/yellow-pine/zsh-github-dark/main/in
 
 ## Testing
 
-This project includes comprehensive test coverage for all customer-facing functionality:
+This project includes comprehensive test coverage for all user-facing functionality:
 
 ```bash
 ./run-tests.sh

@@ -41,12 +41,12 @@ Remaining improvements that align with our simplicity-first approach.
   - Basic linting for shell scripts
   - Ensure scripts are error-free
 
-- [x] **Add comprehensive tests for customer-facing functionality**
+- [x] **Add comprehensive tests for user-facing functionality**
   - Test suite covers all user-facing features (42 tests)
   - One-line installer (help, dry-run, uninstall, error handling)
   - Shell configuration (aliases, git integration, prompt, key bindings)
   - Terminal profile (XML validation, color definitions)
-  - Philosophy: Only test what customers interact with
+  - Philosophy: Only test what users interact with
 
 ### Documentation
 

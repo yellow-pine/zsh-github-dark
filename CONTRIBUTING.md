@@ -20,7 +20,7 @@ here’s how you can help:
 - Run the test suite: `./run-tests.sh`
 - Test your changes locally by sourcing the `.zshrc`
 - Make sure prompt rendering and terminal colors remain clean
-- Ensure all customer-facing functionality works as expected
+- Ensure all user-facing functionality works as expected
 
 ---
 

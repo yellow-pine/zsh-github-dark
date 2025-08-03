@@ -1,5 +1,5 @@
 #!/bin/bash
-# Test suite for customer-facing functionality only
+# Test suite for user-facing functionality only
 set -e
 
 # Colors for output
@@ -27,7 +27,7 @@ run_test() {
   fi
 }
 
-echo -e "${BLUE}Testing customer-facing functionality...${NC}"
+echo -e "${BLUE}Testing user-facing functionality...${NC}"
 echo ""
 
 # Create a temporary test environment
@@ -36,7 +36,7 @@ TEST_HOME="$TEST_DIR/home"
 mkdir -p "$TEST_HOME"
 
 # ========================================
-# INSTALLER TESTS (Customer-Facing)
+# INSTALLER TESTS (User-Facing)
 # ========================================
 echo "=== One-Line Installer ==="
 run_test "installer syntax valid" "bash -n install.sh"
@@ -49,7 +49,7 @@ run_test "installer shows complete message" "bash install.sh --dry-run 2>&1 | gr
 run_test "installer handles unknown options" "bash install.sh --invalid-option 2>&1 | grep -q 'Unknown option'"
 
 # ========================================
-# ZSHRC FUNCTIONALITY TESTS (Customer-Facing)
+# ZSHRC FUNCTIONALITY TESTS (User-Facing)
 # ========================================
 echo ""
 echo "=== .zshrc Configuration ==="
@@ -121,7 +121,7 @@ run_test "poetry integration safe" "HOME=$TEST_HOME PATH=/usr/bin:/bin zsh -c 's
 run_test "completion system loads" "HOME=$TEST_HOME zsh -c 'source src/.zshrc 2>/dev/null; typeset -f _complete >/dev/null 2>&1'"
 
 # ========================================
-# TERMINAL PROFILE TESTS (Customer-Facing)
+# TERMINAL PROFILE TESTS (User-Facing)
 # ========================================
 echo ""
 echo "=== Terminal Profile ==="
@@ -142,9 +142,9 @@ echo -e "Tests failed: ${RED}$TESTS_FAILED${NC}"
 echo "================================"
 
 if [ $TESTS_FAILED -eq 0 ]; then
-  echo -e "${GREEN}All customer-facing functionality works!${NC}"
+  echo -e "${GREEN}All user-facing functionality works!${NC}"
   exit 0
 else
-  echo -e "${RED}Some customer-facing features failed!${NC}"
+  echo -e "${RED}Some user-facing features failed!${NC}"
   exit 1
 fi

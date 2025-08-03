@@ -103,7 +103,7 @@ When configured, you'll have access to GitHub operations including:
 
 ### Testing Changes
 
-The project includes comprehensive test coverage for all customer-facing functionality:
+The project includes comprehensive test coverage for all user-facing functionality:
 
 ```bash
 # Run the full test suite
@@ -115,7 +115,7 @@ shfmt -d src/.zshrc        # Verify formatting
 bash -n install.sh         # Check installer syntax
 ```
 
-**Testing Philosophy**: Only customer-facing functionality is tested. This includes:
+**Testing Philosophy**: Only user-facing functionality is tested. This includes:
 - `install.sh` - One-line installer (help, dry-run, uninstall, error handling)
 - `src/.zshrc` - Shell configuration (aliases, git integration, prompt, key bindings)  
 - `src/github-dark.terminal` - Terminal profile (XML validation, color definitions)
@@ -124,7 +124,7 @@ bash -n install.sh         # Check installer syntax
 
 Before submitting changes:
 
-1. Run `./run-tests.sh` to ensure all customer-facing functionality works
+1. Run `./run-tests.sh` to ensure all user-facing functionality works
 2. Test your modifications locally by sourcing the `.zshrc`
 3. Ensure prompt rendering and terminal colors remain clean
 
