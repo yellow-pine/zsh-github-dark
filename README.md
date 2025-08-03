@@ -1,5 +1,11 @@
 # zsh-github-dark
 
+[![CI](https://github.com/yellow-pine/zsh-github-dark/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/yellow-pine/zsh-github-dark/actions/workflows/continuous-integration.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![macOS](https://img.shields.io/badge/macOS-10.15+-blue.svg)](https://www.apple.com/macos/)
+[![Shell](https://img.shields.io/badge/shell-zsh-green.svg)](https://www.zsh.org/)
+[![Tests](https://img.shields.io/badge/tests-42%20passing-brightgreen.svg)](#testing)
+
 A comprehensive zsh configuration with GitHub Dark terminal theme for macOS developers.
 
 ## Install
