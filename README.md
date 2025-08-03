@@ -1,6 +1,6 @@
 # zsh-github-dark
 
-A minimal zsh configuration with GitHub Dark terminal theme for macOS.
+A comprehensive zsh configuration with GitHub Dark terminal theme for macOS developers.
 
 ## Install
 
@@ -10,21 +10,39 @@ curl -fsSL https://raw.githubusercontent.com/yellow-pine/zsh-github-dark/main/in
 
 ## What You Get
 
-- Beautiful GitHub Dark terminal colors
-- Git-aware prompt (branch + dirty state)
-- Command execution timing
-- Clean, fast, minimal
+- **Beautiful GitHub Dark terminal colors** - Custom Terminal profile optimized for dark themes
+- **Git-aware prompt** - Shows branch name, dirty state, and command timing
+- **Enhanced directory listings** - `lsd` with colors and better formatting (ls, ll, la aliases)
+- **Developer-friendly history** - 10,000 command history with deduplication and sharing
+- **Tool integrations** - Safe support for pyenv, nvm, and poetry when installed
+- **Optimized for GitHub Dark** - Colors and prompt designed for the GitHub Dark aesthetic
 
 ## Requirements
 
 - macOS 10.15+
 - Homebrew
+- Terminal.app
 
 ## Uninstall
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/yellow-pine/zsh-github-dark/main/install.sh | bash -s -- --uninstall
 ```
+
+## Testing
+
+This project includes comprehensive test coverage for all customer-facing functionality:
+
+```bash
+./run-tests.sh
+```
+
+Tests cover:
+- One-line installer (help, dry-run, uninstall, error handling)
+- Shell configuration (aliases, git integration, prompt, key bindings)
+- Terminal profile (XML validation, color definitions)
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for development setup.
 
 ## Help
 

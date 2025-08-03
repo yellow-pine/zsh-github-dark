@@ -69,14 +69,18 @@ These will be automatically installed during setup:
 
 ## Checking Your System
 
-Run the dependency checker to verify your system:
+The installer automatically checks your system and installs missing dependencies:
 
 ```bash
-scripts/check-dependencies.sh
+# The installer will check and install what's needed
+curl -fsSL https://raw.githubusercontent.com/yellow-pine/zsh-github-dark/main/install.sh | bash
+
+# Or preview what would be installed
+curl -fsSL https://raw.githubusercontent.com/yellow-pine/zsh-github-dark/main/install.sh | bash -s -- --dry-run
 ```
 
-This will:
-- Verify macOS version
-- Check all required dependencies
-- Report any missing components
-- Offer to install missing packages
+The installer automatically:
+- Verifies macOS version compatibility
+- Checks for required tools (git, homebrew)
+- Installs missing dependencies (coreutils, lsd, zsh)
+- Reports any issues clearly

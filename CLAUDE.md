@@ -103,12 +103,30 @@ When configured, you'll have access to GitHub operations including:
 
 ### Testing Changes
 
+The project includes comprehensive test coverage for all customer-facing functionality:
+
+```bash
+# Run the full test suite
+./run-tests.sh
+
+# Run individual checks
+zsh -n src/.zshrc          # Check .zshrc syntax
+shfmt -d src/.zshrc        # Verify formatting
+bash -n install.sh         # Check installer syntax
+```
+
+**Testing Philosophy**: Only customer-facing functionality is tested. This includes:
+- `install.sh` - One-line installer (help, dry-run, uninstall, error handling)
+- `src/.zshrc` - Shell configuration (aliases, git integration, prompt, key bindings)  
+- `src/github-dark.terminal` - Terminal profile (XML validation, color definitions)
+
+**Not Tested**: Internal development tools like pre-commit hooks, CI scripts, or documentation files.
+
 Before submitting changes:
 
-1. Test your modifications locally by sourcing the `.zshrc`
-2. Ensure prompt rendering and terminal colors remain clean
-3. Run `zsh -n src/.zshrc` to check syntax
-4. Run `shfmt -d src/.zshrc` to verify formatting
+1. Run `./run-tests.sh` to ensure all customer-facing functionality works
+2. Test your modifications locally by sourcing the `.zshrc`
+3. Ensure prompt rendering and terminal colors remain clean
 
 ### Recommended Tools
 
