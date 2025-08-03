@@ -1,89 +1,78 @@
-# 🛠 Contributing to zsh-github-dark
+# Contributing to zsh-github-dark
 
-Thanks for considering contributing! We keep things simple and clean —
-here’s how you can help:
+Thanks for your interest in contributing! This project follows a simplicity-first approach.
 
-## ✨ How to Contribute
+## How to Contribute
 
-- Open an issue if you find a bug, improvement idea, or enhancement.
-- Fork the repo and submit a pull request (PR).
-- Keep changes small and focused.
+1. **Report issues** - Found a bug or have an idea? [Open an issue](https://github.com/yellow-pine/zsh-github-dark/issues)
+2. **Submit pull requests** - Fork the repo and submit focused changes
+3. **Keep it minimal** - This project values simplicity over features
 
-## 🎯 Code Style
+## Development Setup
 
-- Keep `.zshrc` readable and minimal — no unnecessary plugin frameworks.
-- Follow existing file organization.
-- No external dependencies unless absolutely necessary.
+### Required Tools
 
-## 📦 Before Submitting a PR
-
-- Run the test suite: `./run-tests.sh` (42 comprehensive tests)
-- Test your changes locally by sourcing the `.zshrc`
-- Make sure prompt rendering and terminal colors remain clean
-- Ensure all user-facing functionality works as expected
-- Tests are compatible with both macOS and Ubuntu CI environments
-
----
-
-## 🛠 Developer Setup
-
-To contribute cleanly to this project, we recommend setting up a local
-environment with basic tooling.
-
-### 🔹 Required Developer Tools
-
-Please ensure you have the following installed locally:
-
-- [`shfmt`](https://github.com/mvdan/sh) — for shell script formatting
-
-Install it via Homebrew:
+Install the formatting tool:
 
 ```bash
 brew install shfmt
 ```
 
-We use `shfmt` to automatically format `src/.zshrc` for consistency.
+### Pre-commit Hook (Optional)
 
-> **Note:** Syntax checking (`zsh -n`) and formatting validation (`shfmt -d`)
-> are handled automatically by GitHub Actions CI.
-
----
-
-### 🔹 Pre-Commit Hook Setup
-
-To enable automatic formatting of `src/.zshrc` before every commit, manually copy the pre-commit hook:
+Automatically format code before commits:
 
 ```bash
 cp git-hooks/pre-commit .git/hooks/
 chmod +x .git/hooks/pre-commit
 ```
 
-This ensures consistent formatting standards.
+### Testing Changes
 
----
+Before submitting a PR:
 
-## 🧩 Recommended VSCode Extensions
+```bash
+# Run full test suite (42 tests)
+./run-tests.sh
 
-To ensure a smooth development experience, we recommend installing the
-suggested extensions when prompted by VSCode or Cursor:
+# Check syntax manually
+zsh -n src/.zshrc
 
-- **Shell Format** (`foxundermoon.shell-format`) — Formats `.zshrc` cleanly
-  using `shfmt`
-- **EditorConfig** (`editorconfig.editorconfig`) — Ensures consistent
-  formatting rules across different editors
-- **Markdownlint** (`davidanson.vscode-markdownlint`) — Helps maintain clean
-  and consistent Markdown style
+# Verify formatting
+shfmt -d src/.zshrc
 
-These extensions are optional but highly recommended.
+# Test locally
+source src/.zshrc
+```
 
----
+## Code Guidelines
 
-## 🛡 License
+- **Keep `.zshrc` minimal** - No unnecessary frameworks or complexity
+- **Follow existing patterns** - Match the current code style
+- **No new dependencies** - Unless absolutely essential
+- **Test thoroughly** - Ensure colors and prompt work correctly
 
-By contributing, you agree that your code will be licensed under the
-[MIT License](LICENSE).
+## Development Philosophy
 
----
+This project intentionally avoids:
+- Plugin systems or frameworks
+- Configuration files or customization options  
+- Multiple terminal emulator support
+- Advanced features that add complexity
 
-Thank you for helping make this project better! Built with 💛 by
-[Yellow Pine](https://github.com/yellow-pine).
+We focus on providing one excellent default experience.
+
+## Recommended Editor Extensions
+
+For VSCode/Cursor:
+- Shell Format (foxundermoon.shell-format)
+- EditorConfig (editorconfig.editorconfig)
+- Markdownlint (davidanson.vscode-markdownlint)
+
+## Project Commands
+
+See [CLAUDE.md](CLAUDE.md) for the complete list of development commands and project documentation.
+
+## License
+
+By contributing, you agree your code will be licensed under the [MIT License](LICENSE).

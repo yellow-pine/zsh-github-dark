@@ -2,16 +2,28 @@
 
 ## Overview
 
-This repository contains personal terminal configuration files (zsh, Terminal profile) and does not ship or execute any application code. As such, it does not have a formal security update or vulnerability management process.
+This project provides terminal configuration files (zsh, Terminal profile) with minimal dependencies. Security is maintained through simplicity and transparency.
 
-There are no software dependencies, external services, or executable binaries bundled in this project.
+## What This Project Does
 
-## Reporting a Concern
+- Installs zsh configuration files to your home directory
+- Downloads and installs a Terminal.app profile
+- Installs minimal dependencies via Homebrew (lsd, coreutils)
+- No network connections during normal operation
+- No data collection or external services
 
-If you notice a serious concern affecting the safety, privacy, or integrity of these configuration files, you are welcome to open an issue on the GitHub repository:
+## Security Considerations
 
-🔗 [yellow-pine/zsh-github-dark Issues](https://github.com/yellow-pine/zsh-github-dark/issues)
+The installation script:
+- Only modifies files in your home directory
+- Backs up existing configurations before changes
+- Uses HTTPS for all downloads
+- Can be reviewed before execution
+- Provides dry-run mode for verification
 
-Please note:  
-Since this is a static configuration project, no frequent security updates are planned.
+## Reporting Security Issues
+
+For security concerns, please [open an issue](https://github.com/yellow-pine/zsh-github-dark/issues) with details.
+
+Since this is a configuration project with no runtime components, security updates are rare but will be addressed promptly if needed.
 

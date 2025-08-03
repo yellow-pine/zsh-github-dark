@@ -1,8 +1,8 @@
 # zsh-github-dark
 
-A comprehensive zsh configuration with GitHub Dark terminal theme for macOS developers.
+A minimalistic zsh configuration with GitHub Dark terminal theme for macOS. One command setup, zero configuration required.
 
-## Install
+## Quick Start
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/yellow-pine/zsh-github-dark/main/install.sh | bash
@@ -10,17 +10,15 @@ curl -fsSL https://raw.githubusercontent.com/yellow-pine/zsh-github-dark/main/in
 
 ## What You Get
 
-- **Beautiful GitHub Dark terminal colors** - Custom Terminal profile optimized for dark themes
-- **Git-aware prompt** - Shows branch name, dirty state, and command timing
-- **Enhanced directory listings** - `lsd` with colors and better formatting (ls, ll, la aliases)
-- **Developer-friendly history** - 10,000 command history with deduplication and sharing
-- **Tool integrations** - Safe support for pyenv, nvm, and poetry when installed
-- **Optimized for GitHub Dark** - Colors and prompt designed for the GitHub Dark aesthetic
+- **GitHub Dark terminal theme** - Beautiful colors optimized for dark interfaces
+- **Smart git prompt** - Shows branch, status, and command timing
+- **Enhanced file listings** - Modern `lsd` with icons and colors
+- **Zero configuration** - Works perfectly out of the box
 
-## Requirements
+## System Requirements
 
 - macOS 10.15+
-- Homebrew
+- Homebrew (will be installed if missing)
 - Terminal.app
 
 ## Uninstall
@@ -29,26 +27,19 @@ curl -fsSL https://raw.githubusercontent.com/yellow-pine/zsh-github-dark/main/in
 curl -fsSL https://raw.githubusercontent.com/yellow-pine/zsh-github-dark/main/install.sh | bash -s -- --uninstall
 ```
 
-## Testing
+## Troubleshooting
 
-This project includes comprehensive test coverage for all user-facing functionality:
+**Installation fails?** Make sure you have Xcode Command Line Tools: `xcode-select --install`
 
-```bash
-./run-tests.sh
-```
+**Colors look wrong?** Set Terminal → Preferences → Profiles → "GitHub Dark" as default
 
-**42 comprehensive tests** covering:
-- One-line installer (help, dry-run, uninstall, error handling)
-- Shell configuration (aliases, git integration, prompt, key bindings)
-- Terminal profile (XML validation, color definitions)
+**Missing commands?** The installer handles dependencies automatically
 
-**Platform compatibility**: Tests run on both macOS (primary target) and Ubuntu (CI environment), with platform-appropriate validation methods.
+For more help, see common issues in our [troubleshooting guide](TROUBLESHOOTING.md).
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for development setup.
+## Contributing
 
-## Help
-
-See [TROUBLESHOOTING.md](TROUBLESHOOTING.md) for common issues.
+Found a bug or want to contribute? See our [contributing guide](CONTRIBUTING.md) for development setup and guidelines.
 
 ## License
 
