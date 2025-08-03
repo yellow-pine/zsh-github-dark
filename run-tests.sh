@@ -75,6 +75,7 @@ run_test "la alias configured" "HOME=$TEST_HOME zsh -c 'source src/.zshrc 2>/dev
 
 # Git integration
 MOCK_REPO="$TEST_DIR/mock-repo"
+CURRENT_DIR="$(pwd)"
 mkdir -p "$MOCK_REPO"
 cd "$MOCK_REPO"
 git init --quiet
@@ -84,14 +85,14 @@ echo "test" > file.txt
 git add file.txt
 git commit -m "Initial commit" --quiet
 
-run_test "git branch function exists" "cd $MOCK_REPO && HOME=$TEST_HOME zsh -c 'source $OLDPWD/src/.zshrc 2>/dev/null; type _git_branch' | grep -q function"
-run_test "git branch detection works" "cd $MOCK_REPO && HOME=$TEST_HOME zsh -c 'source $OLDPWD/src/.zshrc 2>/dev/null; _git_branch' | grep -E -q '^(main|master)$'"
+run_test "git branch function exists" "cd $MOCK_REPO && HOME=$TEST_HOME zsh -c 'source $CURRENT_DIR/src/.zshrc 2>/dev/null; type _git_branch' | grep -q function"
+run_test "git branch detection works" "cd $MOCK_REPO && HOME=$TEST_HOME zsh -c 'source $CURRENT_DIR/src/.zshrc 2>/dev/null; _git_branch' | grep -E -q '^(main|master)$'"
 
 # Test dirty state
 echo "changed" >> file.txt
-run_test "git dirty state detection" "cd $MOCK_REPO && HOME=$TEST_HOME zsh -c 'source $OLDPWD/src/.zshrc 2>/dev/null; _git_branch' | grep -q '\*'"
+run_test "git dirty state detection" "cd $MOCK_REPO && HOME=$TEST_HOME zsh -c 'source $CURRENT_DIR/src/.zshrc 2>/dev/null; _git_branch' | grep -q '\*'"
 
-cd - > /dev/null
+cd "$CURRENT_DIR"
 
 # Environment variables
 run_test "LS_COLORS exported" "HOME=$TEST_HOME zsh -c 'source src/.zshrc 2>/dev/null; [[ -n \$LS_COLORS ]]'"
