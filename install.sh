@@ -135,6 +135,7 @@ fi
 if ! command -v brew &> /dev/null; then
   echo -e "${RED}❌ Homebrew is not installed${NC}"
   echo "Please install Homebrew first:"
+  # shellcheck disable=SC2016
   echo '  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
   exit 1
 fi
