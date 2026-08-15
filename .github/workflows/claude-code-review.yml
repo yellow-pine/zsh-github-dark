@@ -1,59 +1,33 @@
+# PR review — LOCAL BACKEND, BLOCKING (org policy 2026-08-15: never advisory).
+# The engine is the org runner stack's `review --gate` against the local vLLM
+# server (zero API spend), via the reusable workflow in ai-runner-stack.
+#
+# PUBLIC-REPO POSTURE, deliberately layered:
+#   1. This repo requires approval for workflow runs from ALL outside
+#      collaborators (Actions setting, 2026-08-15), so fork-PR workflows never
+#      run unapproved.
+#   2. The reusable's inner job carries a same-repo guard evaluated by GitHub
+#      BEFORE runner assignment: even an approved fork PR skips this job, so
+#      fork code never reaches the self-hosted runners.
+#   3. CI (continuous-integration.yml) deliberately stays on GitHub-hosted
+#      runners — free for public repos, and it keeps approved fork CI runs off
+#      our hardware entirely. Only this same-repo-guarded review job is
+#      self-hosted.
+#
+# ⚠️ Check-context contract: caller job id `claude-review` + inner job
+# "PR review" publish `claude-review / PR review`; the ruleset's
+# required-checks list carries exactly that name.
 name: Claude Code Review
 
 on:
-  pull_request:
-    types: [opened, synchronize]
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+    pull_request:
+        types: [opened, synchronize]
 
 jobs:
-  claude-review:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pull-requests: read
-      issues: read
-      id-token: write
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+    claude-review:
+        uses: yellow-pine/ai-runner-stack/.github/workflows/reusable-code-review.yml@main
         with:
-          fetch-depth: 1
-
-      - name: Run Claude Code Review
-        id: claude-review
-        uses: anthropics/claude-code-action@beta
-        with:
-          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
-
-          # Optional: Specify model (defaults to Claude Sonnet 4, uncomment for Claude Opus 4)
-          model: "claude-opus-4-20250514"
-
-          # Direct prompt for automated review (no @claude mention needed)
-          direct_prompt: |
-            ${{ github.event.pull_request.author_association == 'FIRST_TIME_CONTRIBUTOR' &&
-            'Welcome! Please review this PR from a first-time contributor. Be encouraging and provide detailed explanations for any suggestions.' ||
-            'Please provide a thorough code review focusing on our coding standards and best practices.' }}
-
-            Please review this pull request and provide feedback on:
-            - Code quality and best practices
-            - Potential bugs or issues
-            - Performance considerations
-            - Security concerns
-            - Test coverage
-
-            Review this PR focusing on:
-            - For TypeScript files: Type safety and proper interface usage
-            - For API endpoints: Security, input validation, and error handling
-            - For React components: Performance, accessibility, and best practices
-            - For tests: Coverage, edge cases, and test quality
-
-            Be constructive and helpful in your feedback.
-
-          # Optional: Use sticky comments to make Claude reuse the same comment on subsequent pushes to the same PR
-          use_sticky_comment: true
-
-          # Optional: Add specific tools for running tests or linting
-          allowed_tools: "Bash(npm run test),Bash(npm run lint),Bash(npm run typecheck)"
+            gate: true
+        permissions:
+            contents: read
+            pull-requests: write
