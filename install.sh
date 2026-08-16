@@ -248,6 +248,8 @@ echo -e "${YELLOW}🎨 Installing Terminal profile...${NC}"
 
 if [ "$DRY_RUN" = true ]; then
   echo -e "${BLUE}[DRY RUN] Would import GitHub Dark Terminal profile${NC}"
+  run_cmd defaults write com.apple.Terminal "Default Window Settings" "GitHub Dark"
+  run_cmd defaults write com.apple.Terminal "Startup Window Settings" "GitHub Dark"
 else
   # Import the terminal profile using osascript
   osascript <<EOF
@@ -256,10 +258,19 @@ tell application "Terminal"
   do shell script "open " & quoted form of POSIX path of profilePath
 end tell
 EOF
-  
+
   echo -e "${GREEN}✅ Terminal profile imported${NC}"
-  echo ""
-  echo "👉 Set 'GitHub Dark' as default in Terminal → Settings → Profiles"
+
+  # Set GitHub Dark as the Default and Startup profile. This isn't fatal if
+  # it fails (e.g. Terminal.app's defaults change in a future macOS release)
+  # since the profile is still imported and selectable manually.
+  if defaults write com.apple.Terminal "Default Window Settings" "GitHub Dark" &&
+    defaults write com.apple.Terminal "Startup Window Settings" "GitHub Dark"; then
+    echo -e "${GREEN}✅ Set GitHub Dark as the default Terminal profile${NC}"
+  else
+    echo -e "${YELLOW}⚠️  Couldn't set GitHub Dark as the default Terminal profile${NC}"
+    echo "   Set it manually: Terminal → Settings → Profiles"
+  fi
 fi
 
 # Cleanup

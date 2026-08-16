@@ -48,12 +48,16 @@ run_test "installer uninstall dry-run works" "bash install.sh --uninstall --dry-
 if [[ "$OSTYPE" == "darwin"* ]]; then
   run_test "installer checks prerequisites" "bash install.sh --dry-run 2>&1 | grep -q 'Checking prerequisites'"
   run_test "installer shows complete message" "bash install.sh --dry-run 2>&1 | grep -q 'Dry run complete'"
+  run_test "installer previews setting default Terminal profile" "bash install.sh --dry-run 2>&1 | grep -q 'Default Window Settings'"
+  run_test "installer previews setting startup Terminal profile" "bash install.sh --dry-run 2>&1 | grep -q 'Startup Window Settings'"
 else
   # On non-macOS, installer exits early with error message
   run_test "installer checks prerequisites" "bash install.sh --dry-run 2>&1 | grep -q 'Error: This installer is only for macOS'"
   run_test "installer shows complete message" "bash install.sh --dry-run 2>&1 | grep -q 'Error: This installer is only for macOS'"
+  echo "  (skipping default Terminal profile preview checks — installer is macOS-only)"
 fi
 run_test "installer handles unknown options" "bash install.sh --invalid-option 2>&1 | grep -q 'Unknown option'"
+run_test "installer no longer prints manual default-profile instruction" "! grep -q 'as default in Terminal' install.sh"
 
 # ========================================
 # ZSHRC FUNCTIONALITY TESTS (User-Facing)
