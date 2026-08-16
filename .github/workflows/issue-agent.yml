@@ -1,0 +1,26 @@
+# Issue agent — thin caller of the org reusable (see its header for the full
+# design: local-model triage on every new issue; the 'agent-fix' label
+# authorizes a Claude Code fix attempt whose PR auto-merges only when CI and
+# the blocking review gate are green; daily sweep is the missed-event backstop).
+name: issue-agent
+
+on:
+  issues:
+    types: [opened, labeled]
+  schedule:
+    - cron: "17 6 * * *"
+  workflow_dispatch:
+
+jobs:
+  agent:
+    uses: yellow-pine/ai-runner-stack/.github/workflows/reusable-issue-agent.yml@main
+    with:
+      merge_method: "squash"
+      public_repo: true
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+    # REQUIRED: the org secrets (AGENT_PUSH_TOKEN, CLAUDE_CODE_OAUTH_TOKEN)
+    # only reach the reusable through inherit.
+    secrets: inherit
