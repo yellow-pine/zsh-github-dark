@@ -25,9 +25,7 @@ on:
 
 jobs:
     claude-review:
-        uses: yellow-pine/ai-runner-stack/.github/workflows/reusable-code-review.yml@main
-        with:
-            gate: true
+        uses: ./.github/workflows/_claude-review.yml
         permissions:
             contents: read
             pull-requests: write
