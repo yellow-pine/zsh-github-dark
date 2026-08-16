@@ -17,7 +17,7 @@ here’s how you can help:
 
 ## 📦 Before Submitting a PR
 
-- Run the test suite: `./run-tests.sh` (42 comprehensive tests)
+- Run the test suite: `./run-tests.sh` (50 comprehensive tests)
 - Test your changes locally by sourcing the `.zshrc`
 - Make sure prompt rendering and terminal colors remain clean
 - Ensure all user-facing functionality works as expected

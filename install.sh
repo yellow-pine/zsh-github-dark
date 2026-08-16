@@ -63,6 +63,17 @@ write_file() {
   fi
 }
 
+# Function to find the newest installer-created .zshrc backup, if any.
+# Backups are named .zshrc.backup.YYYYMMDD_HHMMSS, so the glob's
+# lexicographic order is chronological order: the last match is the newest.
+latest_backup() {
+  local file latest=""
+  for file in "$HOME"/.zshrc.backup.*; do
+    [ -f "$file" ] && latest="$file"
+  done
+  echo "$latest"
+}
+
 # Handle uninstall
 if [ "$UNINSTALL" = true ]; then
   echo -e "${BLUE}╔════════════════════════════════════╗${NC}"
@@ -77,10 +88,20 @@ if [ "$UNINSTALL" = true ]; then
   
   echo -e "${YELLOW}🗑  Removing zsh-github-dark...${NC}"
   
-  # Remove .zshrc if it's ours
+  # Remove .zshrc if it's ours, restoring the user's original from the
+  # newest installer-created backup. The backup itself is kept as a safety
+  # net; without one, degrade loudly rather than delete silently.
   if [ -f "$HOME/.zshrc" ] && grep -q "zsh-github-dark" "$HOME/.zshrc" 2>/dev/null; then
-    run_cmd rm "$HOME/.zshrc"
-    echo -e "${GREEN}✅ Removed .zshrc${NC}"
+    LATEST_BACKUP="$(latest_backup)"
+    if [ -n "$LATEST_BACKUP" ]; then
+      run_cmd cp "$LATEST_BACKUP" "$HOME/.zshrc"
+      echo -e "${GREEN}✅ Restored original .zshrc from $LATEST_BACKUP${NC}"
+      echo "   (the backup file was kept in case you need it again)"
+    else
+      run_cmd rm "$HOME/.zshrc"
+      echo -e "${YELLOW}⚠️  No backup found — removed .zshrc without restoring a previous one${NC}"
+      echo -e "${YELLOW}   (the installer saves any pre-existing .zshrc as ~/.zshrc.backup.<timestamp>)${NC}"
+    fi
   fi
   
   # Remove installation directory

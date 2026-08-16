@@ -1,6 +1,9 @@
 # ----------------------------------------
 # ⚡ Dev .zshrc (Optimized for macOS ARM + Homebrew Installs + GitHub Dark Terminal)
 #
+# Installed by zsh-github-dark — https://github.com/yellow-pine/zsh-github-dark
+# (the uninstaller uses this line to recognize the file before touching it)
+#
 # Prerequisites (brew install):
 #   brew install coreutils lsd bc pyenv nvm poetry
 #

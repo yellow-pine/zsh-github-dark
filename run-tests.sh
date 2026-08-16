@@ -147,6 +147,42 @@ fi
 run_test "terminal profile has name" "grep -q 'GitHub Dark' src/github-dark.terminal"
 run_test "terminal profile has colors" "grep -q 'ANSIBlackColor' src/github-dark.terminal"
 
+# ========================================
+# UNINSTALLER RESTORE TESTS (User-Facing)
+# ========================================
+# The uninstall path runs before the macOS-only gate in install.sh, so these
+# tests behave identically on macOS and Ubuntu — no platform branch needed.
+echo ""
+echo "=== Uninstaller Restore ==="
+
+# The uninstaller only touches ~/.zshrc when it can tell the file is ours
+run_test "installed .zshrc is detectable by uninstaller" "grep -q 'zsh-github-dark' src/.zshrc"
+
+# Restore: the newest installer-created backup wins
+RESTORE_HOME="$TEST_DIR/uninstall-restore"
+mkdir -p "$RESTORE_HOME"
+echo "# zsh-github-dark" > "$RESTORE_HOME/.zshrc"
+echo "older original" > "$RESTORE_HOME/.zshrc.backup.20240101_000000"
+echo "newest original" > "$RESTORE_HOME/.zshrc.backup.20250102_030405"
+run_test "uninstall reports restored backup" "HOME=$RESTORE_HOME bash install.sh --uninstall | grep -q 'Restored original .zshrc'"
+run_test "uninstall restores newest backup" "grep -q 'newest original' $RESTORE_HOME/.zshrc"
+run_test "uninstall keeps the backup file" "test -f $RESTORE_HOME/.zshrc.backup.20250102_030405"
+run_test "uninstall re-run leaves restored .zshrc alone" "HOME=$RESTORE_HOME bash install.sh --uninstall >/dev/null && grep -q 'newest original' $RESTORE_HOME/.zshrc"
+
+# No backup: warn loudly, then remove our .zshrc as before
+WARN_HOME="$TEST_DIR/uninstall-warn"
+mkdir -p "$WARN_HOME"
+echo "# zsh-github-dark" > "$WARN_HOME/.zshrc"
+run_test "uninstall warns when no backup exists" "HOME=$WARN_HOME bash install.sh --uninstall | grep -q 'No backup found'"
+run_test "uninstall without backup removes our .zshrc" "test ! -f $WARN_HOME/.zshrc"
+
+# Dry run: nothing is modified
+DRYRUN_HOME="$TEST_DIR/uninstall-dryrun"
+mkdir -p "$DRYRUN_HOME"
+echo "# zsh-github-dark" > "$DRYRUN_HOME/.zshrc"
+echo "original" > "$DRYRUN_HOME/.zshrc.backup.20240101_000000"
+run_test "uninstall dry-run leaves .zshrc untouched" "HOME=$DRYRUN_HOME bash install.sh --uninstall --dry-run >/dev/null && grep -q 'zsh-github-dark' $DRYRUN_HOME/.zshrc"
+
 # Cleanup
 rm -rf "$TEST_DIR"
 
