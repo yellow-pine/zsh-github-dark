@@ -42,7 +42,7 @@ Remaining improvements that align with our simplicity-first approach.
   - Ensure scripts are error-free
 
 - [x] **Add comprehensive tests for user-facing functionality**
-  - Test suite covers all user-facing features (42 tests)
+  - Test suite covers all user-facing features (50 tests)
   - One-line installer (help, dry-run, uninstall, error handling)
   - Shell configuration (aliases, git integration, prompt, key bindings)
   - Terminal profile (XML validation, color definitions)
