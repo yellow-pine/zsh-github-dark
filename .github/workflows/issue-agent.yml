@@ -1,26 +1,53 @@
-# Issue agent — thin caller of the org reusable (see its header for the full
-# design: local-model triage on every new issue; the 'agent-fix' label
-# authorizes a Claude Code fix attempt whose PR auto-merges only when CI and
-# the blocking review gate are green; daily sweep is the missed-event backstop).
+# Issue agent — PUBLIC-REPO MIRROR of the fix job in ai-runner-stack's
+# reusable-issue-agent.yml (a public repo cannot call a private reusable).
+# Public posture per org policy: NO auto-triage, NO sweep — the only entry is
+# a maintainer applying the agent-fix label, and fork-PR workflow runs
+# already require approval for all outside collaborators. Secrets are
+# repo-level (org secrets are private-visibility); GitHub never exposes them
+# to fork-triggered runs.
+# The upstream watchdog compares the line below against the current upstream
+# blob and pages when a re-mirror is due — update it when re-mirroring:
+# mirrored-from-blob: cca879746c7b2857f17e4a3c969064d0093e3551
 name: issue-agent
 
 on:
   issues:
-    types: [opened, labeled]
-  schedule:
-    - cron: "17 6 * * *"
-  workflow_dispatch:
+    types: [labeled]
 
 jobs:
-  agent:
-    uses: yellow-pine/ai-runner-stack/.github/workflows/reusable-issue-agent.yml@main
-    with:
-      merge_method: "squash"
-      public_repo: true
+  fix:
+    name: Issue fix
+    if: >-
+      github.event.label.name == 'agent-fix'
+      && github.event.issue.user.login != 'github-actions[bot]'
+    runs-on: self-hosted
+    timeout-minutes: 40
+    concurrency:
+      group: issue-agent-${{ github.event.issue.number }}-${{ github.repository }}
+      cancel-in-progress: false
     permissions:
       contents: write
       issues: write
       pull-requests: write
-    # REQUIRED: the org secrets (AGENT_PUSH_TOKEN, CLAUDE_CODE_OAUTH_TOKEN)
-    # only reach the reusable through inherit.
-    secrets: inherit
+    steps:
+      # AGENT_PUSH_TOKEN, not GITHUB_TOKEN: pushes made with GITHUB_TOKEN
+      # trigger no workflows, so the fix PR would get neither CI nor the
+      # blocking review gate and auto-merge would starve.
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          token: ${{ secrets.AGENT_PUSH_TOKEN }}
+          fetch-depth: 0
+
+      - name: Configure git identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Fix issue
+        env:
+          GH_TOKEN: ${{ secrets.AGENT_PUSH_TOKEN }}
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          MERGE_METHOD: squash
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: issue-agent fix "${ISSUE_NUMBER}"

@@ -1,0 +1,76 @@
+# PUBLIC-REPO MIRROR (zsh-github-dark). A public repository cannot use a
+# PRIVATE repository's reusable workflows — GitHub forbids it regardless of
+# the org Actions access setting (discovered 2026-08-16: every cross-repo
+# call here died as a startup_failure with an opaque banner). Hence this
+# local mirror, exactly like the cross-org dome-lingua one.
+# Unified PR reviewer + blocking merge gate — LOCAL BACKEND.
+#
+# This is a MIRRORED COPY of the reusable job in
+# yellow-pine/ai-runner-stack/.github/workflows/reusable-code-review.yml
+# (a private repo in a DIFFERENT org cannot be `uses:`-called from here —
+# GitHub limitation). If that workflow changes, re-mirror this file.
+# The upstream watchdog compares the line below against the current blob of
+# the reusable and pages when a re-mirror is due — update it when re-mirroring:
+# mirrored-from-blob: 162604b04da3c87e80df7e8a60cc81e4ea1489fd
+#
+# The engine is the runner stack's `review` gate against the LOCAL vLLM model:
+# zero API spend, runs on this repo's own self-hosted runners. `review --gate`
+# posts exactly one verdict-stamped review comment and exits fail-closed:
+# 0 = PASS, 2 = FAIL (blocks the merge), 1 = no comment landed. The verdict is
+# produced under vLLM guided_json, so its format cannot be malformed; anything
+# unparseable or errored is a FAIL — closed, never open.
+#
+# REUSABLE so the draft gate can sit on the CALLER (claude-review.yml): a
+# skipped `uses:` job never instantiates this workflow, so a draft-triggered
+# run publishes NO check runs (a skipped inline job would publish the required
+# context as `skipped`, which branch protection counts as PASSED).
+#
+# ⚠️ The check context is `claude-review / PR review` (caller job id `claude` + the
+# job name below). It is a ruleset-REQUIRED check: renaming either side
+# deadlocks every PR until the ruleset is updated in the same window.
+name: _claude-review
+
+on:
+  workflow_call:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  review:
+    name: PR review
+    runs-on: self-hosted
+    # Skip fork PRs (a self-hosted runner must never execute fork-PR code) and
+    # Dependabot. Both conditions are STABLE (a fork stays a fork), so the
+    # skipped-equals-green conclusion can't later mask a real one. The DRAFT
+    # gate lives on the caller instead, because draft flips on the same SHA.
+    if: >-
+      github.event.pull_request.head.repo.full_name == github.repository
+      && github.actor != 'dependabot[bot]'
+    # Pre-flight may wait out a vLLM cold start (15 min) + agentic attempts
+    # (3x180s) + bounded salvage consolidation (10 min).
+    timeout-minutes: 36
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      PR_NUMBER: ${{ github.event.pull_request.number }}
+    steps:
+      # The diff and the comment travel over the API; the checkout only gives
+      # `gh` its repo context, so shallow is enough.
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 1
+
+      # The runner image ships the `review` console script; the model server
+      # address and LOCAL_MODEL arrive from the runner environment. This probe
+      # proves the server serves the model AND accepts tools + reasoning.
+      - name: Model server pre-flight
+        run: review --preflight
+
+      - name: Local review + fail-closed verdict gate
+        run: review --gate "${PR_NUMBER}"
