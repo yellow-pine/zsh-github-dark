@@ -28,6 +28,11 @@ on:
 
 jobs:
     claude-review:
+        # Draft gate on the CALLER (see the mirror's header): a skipped
+        # `uses:` job never instantiates the reusable, so a draft publishes
+        # NO check runs — not a green `skipped` that branch protection
+        # counts as passed. Flagged by this repo's own first Claude review.
+        if: ${{ github.event.pull_request.draft == false }}
         uses: ./.github/workflows/_claude-review.yml
         # Delivers CLAUDE_CODE_OAUTH_TOKEN to the mirror — load-bearing on
         # the claude paradigm; without it the reviewer runs unauthenticated
