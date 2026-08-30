@@ -24,7 +24,11 @@ name: Claude Code Review
 
 on:
     pull_request:
-        types: [opened, synchronize]
+        # reopened + ready_for_review are load-bearing WITH the draft gate: a
+        # draft marked ready without a new push must still mint the required
+        # check, or the PR blocks forever on 'expected'. (Flagged by the
+        # claude gate on the draft-guard PR itself; same list as grove/bly.)
+        types: [opened, reopened, ready_for_review, synchronize]
 
 jobs:
     claude-review:
