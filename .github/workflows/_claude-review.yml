@@ -2,23 +2,27 @@
 # PRIVATE repository's reusable workflows — GitHub forbids it regardless of
 # the org Actions access setting (discovered 2026-08-16: every cross-repo
 # call here died as a startup_failure with an opaque banner). Hence this
-# local mirror, exactly like the cross-org dome-lingua one.
-# Unified PR reviewer + blocking merge gate — LOCAL BACKEND.
+# local mirror.
+# Unified PR reviewer + blocking merge gate.
 #
 # This is a MIRRORED COPY of the reusable job in
 # yellow-pine/ai-runner-stack/.github/workflows/reusable-code-review.yml
-# (a private repo in a DIFFERENT org cannot be `uses:`-called from here —
+# (a private repo's reusable cannot be `uses:`-called from here —
 # GitHub limitation). If that workflow changes, re-mirror this file.
 # The upstream watchdog compares the line below against the current blob of
 # the reusable and pages when a re-mirror is due — update it when re-mirroring:
-# mirrored-from-blob: 162604b04da3c87e80df7e8a60cc81e4ea1489fd
+# mirrored-from-blob: 062265e5fa05f7d1440128e5b01d71310a15c510
 #
-# The engine is the runner stack's `review` gate against the LOCAL vLLM model:
-# zero API spend, runs on this repo's own self-hosted runners. `review --gate`
-# posts exactly one verdict-stamped review comment and exits fail-closed:
-# 0 = PASS, 2 = FAIL (blocks the merge), 1 = no comment landed. The verdict is
-# produced under vLLM guided_json, so its format cannot be malformed; anything
-# unparseable or errored is a FAIL — closed, never open.
+# The engine is the runner stack's `review` gate. WHICH agent reviews is the
+# REVIEW_AGENT variable; this repo is PUBLIC, so the org's private-visibility
+# CLAUDE_CODE_OAUTH_TOKEN secret can never reach it — a repo-level
+# REVIEW_AGENT=opencode variable therefore pins this repo to the LOCAL vLLM
+# paradigm (zero API spend, on this repo's own self-hosted runners). Do not
+# remove that repo variable while the org default is a hosted agent: the gate
+# would run an unauthenticated reviewer and fail every PR closed.
+# `review --gate` posts exactly one verdict-stamped review comment and exits
+# fail-closed: 0 = PASS, 2 = FAIL (blocks the merge), 1 = no comment landed.
+# Anything unparseable or errored is a FAIL — closed, never open.
 #
 # REUSABLE so the draft gate can sit on the CALLER (claude-review.yml): a
 # skipped `uses:` job never instantiates this workflow, so a draft-triggered
@@ -32,6 +36,10 @@ name: _claude-review
 
 on:
   workflow_call:
+    secrets:
+      CLAUDE_CODE_OAUTH_TOKEN:
+        description: "Claude Code OAuth token; needed only when the REVIEW_AGENT variable selects the hosted claude paradigm. Unavailable in this public repo (private-visibility org secret) — see the header."
+        required: false
 
 permissions:
   contents: read
@@ -58,6 +66,11 @@ jobs:
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       PR_NUMBER: ${{ github.event.pull_request.number }}
+      # Reviewer paradigm, resolved from this repo's/org's variables. Here the
+      # repo-level REVIEW_AGENT=opencode pins the local paradigm (see header);
+      # the token line mirrors upstream and resolves empty in this repo.
+      REVIEW_AGENT: ${{ vars.REVIEW_AGENT }}
+      CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
     steps:
       # The diff and the comment travel over the API; the checkout only gives
       # `gh` its repo context, so shallow is enough.
@@ -69,6 +82,8 @@ jobs:
       # The runner image ships the `review` console script; the model server
       # address and LOCAL_MODEL arrive from the runner environment. This probe
       # proves the server serves the model AND accepts tools + reasoning.
+      # On the hosted paradigm the script skips this itself — no local
+      # dependency to wait for.
       - name: Model server pre-flight
         run: review --preflight
 
